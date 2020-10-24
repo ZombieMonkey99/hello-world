@@ -1,9 +1,51 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body id="MainBody">
 <p>Just a test</p>
 <p>line number 2!</p>
 <p>line number 3!</p>
 <p>line number 4!</p>
+
+<button onclick="showContent(this)" sTemplate="T001-001" sCloneNode="MainBody">Show hidden content</button>
+
+<template id="T001-001">
+	<h2>hidden text 1</h2>
+	<button onclick="showContent(this)" sTemplate="T001-002" sCloneNode="MainBody">Show hidden content</button>
+</template>
+
+<template id="T001-002">
+	<h2>hidden text 2</h2>
+</template>
+
+<script>
+
+//Crockford's JavaScript: The Good Parts.
+var walkDOM = function (node,func) {
+	func(node);
+	node = node.firstChild;
+	while(node) {
+		walkDOM(node,func);
+		node = node.nextSibling;
+	}
+};
+
+function RandID(node) {
+	/*let hadID = node.hasAttribute("id");
+	if(hadID) {
+		console.log("hadID true"); 
+	}*/
+}
+
+function showContent(passback) {
+	//document.getElementById('one').id = 'two';
+
+	let sTemplate = passback.getAttribute("sTemplate");
+	let sCloneNode = passback.getAttribute("sCloneNode");
+	let clone = document.getElementById(sTemplate).content.cloneNode(true);
+	//walkDOM(clone,RandID);
+	document.getElementById(sCloneNode).appendChild(clone);
+}
+</script> 
+
 </body>
 </html>
