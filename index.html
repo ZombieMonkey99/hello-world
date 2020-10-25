@@ -10,7 +10,9 @@
 
 <template id="T001-001">
 	<h2>hidden text 1</h2>
-	<button onclick="showContent(this)" sTemplate="T001-002" sCloneNode="MainBody">Show hidden content</button>
+	<button onclick="showContent(this)" sTemplate="T001-002" newsCloneNode="T001-001.1random">Show hidden content</button>
+	<div newid="T001-001.1random">
+	</div>
 </template>
 
 <template id="T001-002">
@@ -20,30 +22,52 @@
 <script>
 
 //Crockford's JavaScript: The Good Parts.
-var walkDOM = function (node,func) {
-	func(node);
+var walkDOM = function (node,func,passback) {
+	func(node,passback);
 	node = node.firstChild;
 	while(node) {
-		walkDOM(node,func);
+		walkDOM(node,func,passback);
 		node = node.nextSibling;
 	}
 };
 
-function RandID(node) {
-	/*let hadID = node.hasAttribute("id");
+function randomID(node,passback) {
+	console.log(node);
+	
+	let hadID = node.hasAttribute("sCloneNode");
 	if(hadID) {
 		console.log("hadID true"); 
-	}*/
+		debugger;
+	}
 }
 
 function showContent(passback) {
-	//document.getElementById('one').id = 'two';
+	//event.type
+	//var myFunc = window[myFuncName];
+	//var myFunc = this[myFuncName];
+	//var myFunc = scope[myFuncName];
 
 	let sTemplate = passback.getAttribute("sTemplate");
 	let sCloneNode = passback.getAttribute("sCloneNode");
+
 	let clone = document.getElementById(sTemplate).content.cloneNode(true);
-	//walkDOM(clone,RandID);
+
+	let x = clone.querySelectorAll("[newid]");
+	//debugger;
+	for (let i = 0; i < x.length; i++) {
+		let matchON = x[i].getAttribute("newid");
+		let newID = matchON.replace("random",Math.random().toString(16).slice(2));
+		x[i].setAttribute("id",newID);
+		x[i].removeAttribute("newid");
+		let y = clone.querySelectorAll('[newsCloneNode="'+matchON+'"]');
+		for (let j = 0; j < y.length; j++) {
+			y[j].setAttribute("sCloneNode",newID);
+			y[j].removeAttribute("newsCloneNode");
+		}
+	}
+
 	document.getElementById(sCloneNode).appendChild(clone);
+	//walkDOM(document.getElementById(sCloneNode),randomID,passback);
 }
 </script> 
 
