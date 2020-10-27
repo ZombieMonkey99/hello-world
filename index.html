@@ -1,73 +1,108 @@
 <!DOCTYPE html>
 <html>
-<body id="MainBody">
-<p>Just a test</p>
-<p>line number 2!</p>
-<p>line number 3!</p>
-<p>line number 4!</p>
+<head>
+	<title>Hello World</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Hello World demo page">
+	<meta name="author" content="ZombieMonkey@gmx.com">
+	<script src="https://kit.fontawesome.com/b23781e9ac.js" crossorigin="anonymous"></script>
+<style>
+.IconSet:hover .IconONA {
+	visibility: hidden;
+}
+.IconSet:hover .IconONB {
+	visibility: visible;
+	cursor: pointer;
+}
+.IconSet .IconONB {
+	visibility: hidden;
+}
+</style>
+</head>
 
-<button onclick="showContent(this)" sTemplate="T001-001" sCloneNode="MainBody">Show hidden content</button>
+<body id="MainBody">
+<span class="IconSet fa-stack">
+	<i class="IconONA fas fa-bars fa-stack-1x"></i>
+	<i class="IconONB fas fa-square fa-stack-2x"></i>
+	<i class="IconONB fas fa-bars fa-stack-1x fa-inverse"></i>
+</span>
+
+<span class="IconSet fa-stack">
+	<i class="IconONA fas fa-window-close fa-stack-1x"></i>
+	<i class="IconONB fas fa-square fa-stack-2x"></i>
+	<i class="IconONB fas fa-window-close fa-stack-1x fa-inverse"></i>
+</span>
+
+
+<button onclick="CloneTemplate(this);" TemplateID="T001-001" CloneToID="MainBody">Show hidden content</button>
 
 <template id="T001-001">
 	<h2>hidden text 1</h2>
-	<button onclick="showContent(this)" sTemplate="T001-002" newsCloneNode="T001-001.1random">Show hidden content</button>
-	<div newid="T001-001.1random">
+	<button onclick="CloneTemplate(this);" TemplateID="T001-002" newCloneToID="T001-001.">Show hidden content</button>
+	<div newid="T001-001.">
 	</div>
 </template>
 
 <template id="T001-002">
-	<h2>hidden text 2</h2>
+	<div newid="T001-002.">
+	<h2>hidden text 2
+<span class="IconSet fa-stack" onclick="RemoveAt(this);" newRemoveAtID="T001-002.">
+	<i class="IconONA fas fa-window-close fa-stack-1x"></i>
+	<i class="IconONB fas fa-square fa-stack-2x"></i>
+	<i class="IconONB fas fa-window-close fa-stack-1x fa-inverse"></i>
+</span>
+	</h2>
 </template>
 
-<script>
+<script type="text/javascript">
 
-//Crockford's JavaScript: The Good Parts.
-var walkDOM = function (node,func,passback) {
-	func(node,passback);
-	node = node.firstChild;
-	while(node) {
-		walkDOM(node,func,passback);
-		node = node.nextSibling;
-	}
-};
-
-function randomID(node,passback) {
-	console.log(node);
-	
-	let hadID = node.hasAttribute("sCloneNode");
-	if(hadID) {
-		console.log("hadID true"); 
-		debugger;
-	}
-}
-
-function showContent(passback) {
+document.addEventListener("DOMContentLoaded", function() {
+	// Handler when the DOM is fully loaded
+	//debugger;
 	//event.type
 	//var myFunc = window[myFuncName];
 	//var myFunc = this[myFuncName];
 	//var myFunc = scope[myFuncName];
+});
 
-	let sTemplate = passback.getAttribute("sTemplate");
-	let sCloneNode = passback.getAttribute("sCloneNode");
+function RemoveAt(passback) {
+	xRemoveAt(
+		passback.getAttribute("RemoveAtID")
+	);
+}
 
-	let clone = document.getElementById(sTemplate).content.cloneNode(true);
+function xRemoveAt(RemoveAtID) {
+	document.getElementById(RemoveAtID).remove();
+}
 
+function CloneTemplate(passback) {
+	xCloneTemplate(
+		passback.getAttribute("TemplateID"),
+		passback.getAttribute("CloneToID")
+	);
+}
+
+function xCloneTemplate(TemplateID,CloneToID) {
+	let clone = document.getElementById(TemplateID).content.cloneNode(true);
 	let x = clone.querySelectorAll("[newid]");
-	//debugger;
 	for (let i = 0; i < x.length; i++) {
 		let matchON = x[i].getAttribute("newid");
-		let newID = matchON.replace("random",Math.random().toString(16).slice(2));
+		let newID = matchON+Math.random().toString(16).slice(2);
 		x[i].setAttribute("id",newID);
 		x[i].removeAttribute("newid");
-		let y = clone.querySelectorAll('[newsCloneNode="'+matchON+'"]');
+		let y = clone.querySelectorAll('[newCloneToID="'+matchON+'"]');
 		for (let j = 0; j < y.length; j++) {
-			y[j].setAttribute("sCloneNode",newID);
-			y[j].removeAttribute("newsCloneNode");
+			y[j].setAttribute("CloneToID",newID);
+			y[j].removeAttribute("newCloneToID");
+		}
+		y = clone.querySelectorAll('[newRemoveAtID="'+matchON+'"]');
+		for (let j = 0; j < y.length; j++) {
+			y[j].setAttribute("RemoveAtID",newID);
+			y[j].removeAttribute("newRemoveAtID");
 		}
 	}
-
-	document.getElementById(sCloneNode).appendChild(clone);
-	//walkDOM(document.getElementById(sCloneNode),randomID,passback);
+	document.getElementById(CloneToID).appendChild(clone);
 }
 </script> 
 
