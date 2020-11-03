@@ -7,56 +7,80 @@
 	<meta name="description" content="Hello World demo page">
 	<meta name="author" content="ZombieMonkey@gmx.com">
 	<script src="https://kit.fontawesome.com/b23781e9ac.js" crossorigin="anonymous"></script>
+<!-- 9 by 6 Greek fret or Greek key
+XXXXXXXXXXXXXXXX
+
+XXXXX XXXXXXXX X
+X   X X      X X
+X XXX X XXXXXX X
+X X   X X      X
+X XXXXX XXXXXXXX
+
+XXXXXXXXXXXXXXXX
+"Courier New", Courier, monospace
+Arial, Helvetica, sans-serif
+-->
 <style>
-.IconSet:hover .IconONA {
+.IconSet:hover .IconA {
 	visibility: hidden;
 }
-.IconSet:hover .IconONB {
+.IconSet:hover .IconB {
 	visibility: visible;
 	cursor: pointer;
 }
-.IconSet .IconONB {
+.IconSet .IconB {
 	visibility: hidden;
 }
+.MenuFloater {
+	right: 0;
+}
+svg:hover {
+	cursor: pointer;
+}
+svg {
+	width: auto; 
+	height: 2rem;
+}
+
+.MenuBar {
+	position: fixed;
+	top: 0;
+	background-color: lightgreen;
+}
+nav {
+	width: 100%;
+	height: auto;
+}
+ol,form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+li {
+	display: inline-block;
+	background-color: red;
+	height: 2rem;	
+}
+* {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 1rem;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	list-style-type: none;
+}
+body {
+	width: 100%;
+	height: 100%;
+	background-color: yellow;
+}
+.breweries {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 1rem;
+}
 </style>
-</head>
-
-<body id="MainBody">
-<span class="IconSet fa-stack">
-	<i class="IconONA fas fa-bars fa-stack-1x"></i>
-	<i class="IconONB fas fa-square fa-stack-2x"></i>
-	<i class="IconONB fas fa-bars fa-stack-1x fa-inverse"></i>
-</span>
-
-<span class="IconSet fa-stack">
-	<i class="IconONA fas fa-window-close fa-stack-1x"></i>
-	<i class="IconONB fas fa-square fa-stack-2x"></i>
-	<i class="IconONB fas fa-window-close fa-stack-1x fa-inverse"></i>
-</span>
-
-
-<button onclick="CloneTemplate(this);" TemplateID="T001-001" CloneToID="MainBody">Show hidden content</button>
-
-<template id="T001-001">
-	<h2>hidden text 1</h2>
-	<button onclick="CloneTemplate(this);" TemplateID="T001-002" newCloneToID="T001-001.">Show hidden content</button>
-	<div newid="T001-001.">
-	</div>
-</template>
-
-<template id="T001-002">
-	<div newid="T001-002.">
-	<h2>hidden text 2
-<span class="IconSet fa-stack" onclick="RemoveAt(this);" newRemoveAtID="T001-002.">
-	<i class="IconONA fas fa-window-close fa-stack-1x"></i>
-	<i class="IconONB fas fa-square fa-stack-2x"></i>
-	<i class="IconONB fas fa-window-close fa-stack-1x fa-inverse"></i>
-</span>
-	</h2>
-</template>
-
 <script type="text/javascript">
-
 document.addEventListener("DOMContentLoaded", function() {
 	// Handler when the DOM is fully loaded
 	//debugger;
@@ -105,6 +129,111 @@ function xCloneTemplate(TemplateID,CloneToID) {
 	document.getElementById(CloneToID).appendChild(clone);
 }
 </script> 
+</head>
 
+<body>
+
+<template id="T001-001">
+	<h2>hidden text 1</h2>
+	<button onclick="CloneTemplate(this);" TemplateID="T001-002" newCloneToID="T001-001.">Show hidden content</button>
+	<div newid="T001-001.">
+	</div>
+</template>
+
+<template id="T001-002">
+	<div newid="T001-002.">
+	<h2>hidden text 2
+<span class="IconSet fa-stack" onclick="RemoveAt(this);" newRemoveAtID="T001-002.">
+	<i class="IconA fas fa-window-close fa-stack-1x"></i>
+	<i class="IconB fas fa-square fa-stack-2x"></i>
+	<i class="IconB fas fa-window-close fa-stack-1x fa-inverse"></i>
+</span>
+	</h2>
+	</div>
+</template>
+
+<nav style="visibility: hidden;"><svg></svg></nav>
+
+<nav class="MenuBar">
+<ol>
+<li>
+<svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+</li>
+<li>
+	<form>
+	<input style="width: 20rem; height: 2rem;" type="text">
+	<input style="height: 2rem;" type="button" value="X">
+	<input style="height: 2rem;" type="submit" value="S">
+	</form>
+</li>
+<li>
+<svg viewBox="0 0 18 18">
+	<path d="M15 1H3a2 2 0 00-2 2v2h16V3a2 2 0 00-2-2zM1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 002-2v-2H1v2zm16-7H1v4h16V6z"></path>
+</svg>
+</li>
+</ol>
+</nav>
+<section>
+
+<div id="MainBody">
+<button onclick="CloneTemplate(this);" TemplateID="T001-001" CloneToID="MainBody">Show hidden content</button>
+</div>
+
+
+
+<article>
+	<h2>Skills</h2>
+	<p>web hosting ~ SSL/TSL certs/DNS/domain name registering</p>
+	<p>IP networking ~ configuring firewall/switch/router/server</p>
+	<p>network monitoring ~ wireshark/SNMP/custom coding tools</p>
+	<p>disaster recovery planning ~ Tape/hard drive backups/SAN-to-SAN replication/site-to-site VPN</p>
+	<p>running an email server </p>
+	<p>running a IP phone system ~ configuring IP phones/SIP trunk/setup PBX</p>
+	<p>running a virtual environment ~ Connection a SAN/install hypervisor/virtualize servers</p>
+	<p>network security ~ patches/user permission/firewall rules/group policy/PCI/monitoring logs/internet research/network scanner</p>
+	<p>Programming ~ I know many languages and can learn new ones easily.</p>
+
+	<h2>Education Experience</h2>
+	<p>I have a 4 year degree, Bachelor of Science in Computer Science, graduated in 2000.</p>
+	<p>worked for an small company for 13 years as a network engineer.  I also developed web apps for them.</p>
+	<p>During college and before working at the small company.  I worked part time web development jobs, for around 9 years.  I started doing that around 1996.</p>
+	<p>I taught myself, most all my skills.  I learn more about working with people in college, than I did about computers.  I took a job to pay for college working in the rec center on campue.  It was a pool hall/bowling ally/video arcade.  I got to break up fights, deal with angry customers, and server food.  We had a C Food Safety Grade.</p>
+	<p>While working for the small company, I took them from a PRI line with a Cisco CUCM, and 3 others servers to do call recording, a receptionist console, and paging. I replace it all with FreePBX and a SIP trunk that reduced costs.  It ended up being around $0.01 / minute, with no licensing costs.</p>
+	<p>Before I took over the operation of the small company's network, they had to reintall windows on 2 to 3 desktop computers a week that where getting infested with viruses and malware. This was before ransomeware.  So I never had to deal with ransomeware, I kepted it all out of the network on my watch, for 10+ years.</p>
+	<p>While working at the small company we had to move the office to a new location, and the production servers where running in that office.  I used my disaster recovery planning to move the servers to the private cloud location we replicated to.  It worked so well, we just left the server at the private cloud location, and access them remotely.</p>
+	<p>When I took over the email server at the small company, we were getting 8000-10000 emails a day.  We where getting 2 or 3 different phishing attack a day.  When I left it was 500-300 e-mails a day, and a phishing attack was a rare thing.</p>
+
+	<h2>Open Source Web development</h2>
+	<p>Linux Ubuntu/Debian/Mint</p>
+	<p>Apache/Nodejs/Nginx/Tomcat</p>
+	<p>MySQL</p>
+	<p>Php/Perl/JavaScript/Java/C/C++</p>
+	<p>Eclipse 2006-2013</p>
+
+	<h2>Microsoft Web development</h2>
+	<p>Windows Server 2003-2019/Windows XP to 10</p>
+	<p>IIS v6-v10</p>
+	<p>MS SQL 2005-2019</p>
+	<p>C#/Visual Basic .Net</p>
+	<p>Visual Studio 2008-2019</p>
+
+	<h2>Hardware</h2>
+	<p>Dell Compellent/EqualLogic</p>
+	<p>Dell Servers Generation 10 to 14</p>
+	<p>Dell/Cisco managed switches</p>
+	<p>Cisco/SonincWall/pfSense firewalls</p>
+	<p>LTO tape autoloader backups 2006-2018</p>
+	<p>Cisoo/Yealink IP phones</p>
+
+	<h2>Software</h2>
+	<p>VMware vSphere/ESXi/vSphere Replication version 5.0 to 7.6</p>
+	<p>asterisk/FreePBX</p>
+	<p>Active Directory/Group Policy/WSUS 2003-2019</p>
+	<p>Exchange 2007-2010/Exchange online/Posfix</p>
+	<p>Office 2007-2016/Office365</p>
+	<p>Backup Exec/Unitrends/Veeam</p>
+</article>
+
+</section>
 </body>
 </html>
