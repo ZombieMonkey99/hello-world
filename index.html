@@ -40,6 +40,7 @@ Arial, Helvetica, sans-serif
 	border: 0;
 	padding: 0;
 	list-style-type: none;
+	color: inherit;
 	background-color: inherit;
 }
 body {
@@ -51,12 +52,33 @@ body {
 .autoFitGrid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-	grid-gap: 1rem;
+	/*grid-gap: 1rem;*/
 }
-
-.autoFitGrid * {
+.autoFitGrid section {
+	border: 2px solid var(--HoverBackground);
+	margin: 0.4rem;
+	border-radius: 1rem;
+	overflow: hidden;
+	background-color: var(--Background3);
+}
+.autoFitGrid h2 {
+	font-size: 1.5rem;
 	color: var(--FontColor3);
 	background-color: var(--Background3);
+	text-align: center;
+}
+.autoFitGrid p {
+	color: var(--FontColor3);
+	background-color: var(--Background3);
+	padding-left: 0.4rem;
+	padding-right: 0.4rem;
+}
+.autoFitGrid span {
+	font-weight: 700;
+}
+.autoFitGrid p:nth-child(even) {
+	color: var(--FontColor2);
+	background-color: var(--Background2);
 }
 #MenuScreen {
 	visibility: hidden;
@@ -85,7 +107,7 @@ nav {
 }
 nav * {
 	height: 3rem;
-	margin: 5px;
+	margin: 0.3rem;
 }
 nav * svg {
 	display: block;
@@ -102,8 +124,8 @@ nav * svg {
 	flex-grow: 1;
 	font-size: 2rem;
 	width: 0;
-	border-radius: 20px;
-	padding-left: 10px;
+	border-radius: 1.2rem;
+	padding-left: 0.5rem;
 	border: 2px solid var(--ControlBackground);
 	color: var(--ControlBackground);
 	background-color: var(--Background1);
@@ -236,16 +258,16 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <article class="autoFitGrid">
 <section style="grid-row: span 2;">
 	<h2>Skills</h2>
-	<p>web hosting ~ SSL/TSL certs/DNS/domain name registering</p>
-	<p>IP networking ~ configuring firewall/switch/router/server</p>
-	<p>network monitoring ~ wireshark/SNMP/custom coding tools</p>
-	<p>disaster recovery planning ~ Tape/hard drive backups/SAN-to-SAN replication/site-to-site VPN</p>
-	<p>running an email server </p>
-	<p>running a IP phone system ~ configuring IP phones/SIP trunk/setup PBX</p>
-	<p>running a virtual environment ~ Connection a SAN/install hypervisor/virtualize servers</p>
-	<p>network security ~ patches/user permission/firewall rules/group policy/PCI/monitoring logs/internet research/network scanner</p>
-	<p>programming ~ I know many languages and can learn new ones easily.</p>
-	<p>computer repair ~ I have been buying parts and assembling computers from the age of 15.</p>
+	<p><span>web hosting</span> SSL/TSL certs/DNS/domain name registering</p>
+	<p><span>IP networking</span> configuring firewall/switch/router/server</p>
+	<p><span>network monitoring</span> wireshark/SNMP/custom coding tools</p>
+	<p><span>disaster recovery</span> Tape/hard drive backups/SAN-to-SAN replication/site-to-site VPN</p>
+	<p><span>email server</span>MX record/PTR record/port 25/DKIM/SPF/DMARC</p>
+	<p><span>IP phone system</span> configuring IP phones/SIP trunk/setup PBX</p>
+	<p><span>virtual environment</span> connecting a SAN/install hypervisor/virtualize servers</p>
+	<p><span>network security</span> patches/user permission/firewall rules/group policy/PCI/monitoring logs/internet research/network scanner</p>
+	<p><span>programming</span> I know many languages and can learn new ones easily.</p>
+	<p><span>computer repair</span> I have been buying parts and assembling computers from the age of 15.</p>
 </section>
 <section style="grid-row: span 3; grid-column: span 2;">
 	<h2>Education Experience</h2>
