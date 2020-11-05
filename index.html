@@ -21,20 +21,17 @@ Arial, Helvetica, sans-serif
 -->
 <style>
 :root {
-  --MenuBackground: PowderBlue;
-  --MenuButton: SteelBlue;
-  --MenuButtonhover: DarkBlue;
-  --searchbox: white;
-  --htmlbody: white;
-}
-svg:hover {
-	cursor: pointer;
-}
-svg:hover path {
-    fill: var(--MenuButtonhover);
-}
-svg {
-    fill: var(--MenuButton);
+--FontColor1: Black;
+--Background1: LightCyan;
+
+--FontColor2: Black;
+--Background2: PowderBlue;
+
+--FontColor3: Black;
+--Background3: DeepSkyBlue;
+
+--ControlBackground: SteelBlue;
+--HoverBackground: DarkBlue;
 }
 * {
 	font-family: "Times New Roman", Times, serif;
@@ -48,34 +45,51 @@ svg {
 body {
 	width: 100%;
 	height: 100%;
-	background-color: var(--htmlbody);
+	color: var(--FontColor1);
+	background-color: var(--Background1);
 }
-.breweries {
- 	display: grid;
- 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
- 	grid-gap: 1rem;
+.autoFitGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	grid-gap: 1rem;
 }
-#SpacerNav,#FloaterNav {
+
+.autoFitGrid * {
+	color: var(--FontColor3);
+	background-color: var(--Background3);
+}
+#MenuScreen {
+	visibility: hidden;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	color: var(--FontColor1);
+	background-color: var(--Background1);
+}
+/*sticky top menu bar style start*/
+svg:hover {
+	cursor: pointer;
+	fill: var(--HoverBackground);
+}
+svg {
+	fill: var(--ControlBackground);
+}
+nav {
 	width: 100%;
 	height: auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
-	background-color: var(--MenuBackground);
+	color: var(--FontColor2);
+	background-color: var(--Background2);
 }
-#SpacerNav section,#FloaterNav section {
-	display: flex;
-	justify-content: space-between;
-	align-items: stretch;
-	background-color: var(--MenuBackground);
-}
-#SpacerNav section *,#FloaterNav section * {
+nav * {
 	height: 3rem;
 	margin: 5px;
 }
-#SpacerNav section * svg,#FloaterNav section * svg {
+nav * svg {
 	display: block;
-	margin: auto;	
+	margin: auto;
 }
 #SpacerNav {
 	visibility: hidden;
@@ -84,25 +98,30 @@ body {
 	position: fixed;
 	top: 0;
 }
-
-input[type=text]{
+.MenuSearch {
+	flex-grow: 1;
+	font-size: 2rem;
+	width: 0;
 	border-radius: 20px;
 	padding-left: 10px;
-	border: 1px solid var(--MenuButtonhover);
-	color: var(--MenuButton);
+	border: 2px solid var(--ControlBackground);
+	color: var(--ControlBackground);
+	background-color: var(--Background1);
 }
-    
-input[type=text]:focus {
+.MenuSearch:focus {
 	outline: none;
-	border: 1px solid var(--MenuButton);
-	color: var(--MenuButtonhover);
+	border: 2px solid var(--HoverBackground);
+	color: var(--HoverBackground);
+	background-color: var(--Background1);
 }
+/*sticky top menu bar style end*/
 
 </style>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {
-	// Handler when the DOM is fully loaded
+	//Handler when the DOM is fully loaded
 	//debugger;
+	document.getElementById('MenuScreen').style.visibility = 'hidden';
 	//event.type
 	//var myFunc = window[myFuncName];
 	//var myFunc = this[myFuncName];
@@ -116,6 +135,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	x[0].setAttribute("id","FloaterNav");
 	x[0].removeAttribute("cloneID");
 });
+
+function toggleMenuScreen(IDofBlock) {
+	let x = document.getElementById(IDofBlock);
+	if (x.style.visibility === 'hidden') {
+		x.style.visibility = 'visible';
+	} else {
+		x.style.visibility = 'hidden';
+	}
+}
 
 function RemoveAt(passback) {
 	xRemoveAt(
@@ -179,44 +207,34 @@ function xCloneTemplate(TemplateID,CloneToID) {
 
 <template id="nav-Menu">
 <nav cloneID="navClone">
-<section>
-
 <a href="https://github.com/ZombieMonkey99/hello-world">
 <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
 </a>
-
 <a href="https://zombiemonkey.netlify.app/">
 <svg viewBox="0 0 400 400"><path d="M290 139l-1-1 8-50 38 38-39 17h-1l-5-4zm55-3l40 40c9 9 13 13 14 18l1 2-97-41-1-1 1-1 42-17zm53 73c-2 4-6 8-13 15l-45 45-59-12h-1l-1-1c0-5-3-9-7-12v-1l11-68v-1l1-1c5 0 9-3 12-7h2l100 43zm-69 71l-75 75 13-79 1-1 7-5 1-1 53 11zm-91 91l-8 8-94-135v-1l1-2 1-1h1l103 22h1v1c2 5 6 10 11 12v1l-16 95zm-17 17c-7 6-10 10-15 11h-12c-5-2-9-6-18-14l-94-94 25-38h1a25 25 0 0 0 18-1h1l94 136zM73 282l-21-21 42-19h1l1 1 1 2v1l-24 36zm-31-31l-27-27-10-11 83 17 1 1-1 1-46 19zM0 199l1-5c1-5 6-9 14-18l35-35a22695 22695 0 0 0 48 70l1 1a29 29 0 0 0-5 6h-1L0 199zm59-67l47-47 35 15a5977 5977 0 0 1 25 11l-1 5c0 5 2 10 6 14v2l-48 73v1h-1l-6-1-5 1h-1v-1l-51-73zm57-56l60-61c9-8 13-12 18-14h12c5 2 10 6 18 14l13 13-43 67v1h-1l-7-1c-5 0-10 1-13 4h-2l-55-23zm130-39l40 40-9 60h-1v1a19 19 0 0 0-6 3h-1l-61-26-1-1a23 23 0 0 0-3-9v-2l42-66zm-41 90l57 24 1 1v5l-1 1-127 54-1-1 1-1 47-72 1-1h3a21 21 0 0 0 18-10h1zm-65 96l128-55 1 1 1 1h1v1l-11 68v1c-6 0-12 4-15 9v1h-1l-102-22-2-5z"></path>
 </svg>
 </a>
-
-</section>
-<section style="flex-grow: 1;">
-	<input style="flex-grow: 1; font-size: 2rem; width: 0; background-color: var(--searchbox);" type="text">
+<input type="text" class="MenuSearch">
 <button type="button">
-<svg viewBox="0 0 20 20">
-	<path d="M15.59,13.91l2.78,2.69a1.25,1.25,0,1,1-1.74,1.8l-2.82-2.73a8,8,0,1,1,1.78-1.76ZM14.64,9.2A5.45,5.45,0,1,0,9.2,14.64,5.45,5.45,0,0,0,14.64,9.2Z"></path>
+<svg viewBox="0 0 20 20"><path d="M15.59,13.91l2.78,2.69a1.25,1.25,0,1,1-1.74,1.8l-2.82-2.73a8,8,0,1,1,1.78-1.76ZM14.64,9.2A5.45,5.45,0,1,0,9.2,14.64,5.45,5.45,0,0,0,14.64,9.2Z"></path>
 </svg>
 </button>
-</section>
-<section>
-	<svg viewBox="0 0 18 18"><path d="M15 1H3a2 2 0 00-2 2v2h16V3a2 2 0 00-2-2zM1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 002-2v-2H1v2zm16-7H1v4h16V6z"></path></svg>
-</section>
+<button type="button" onclick="toggleMenuScreen('MenuScreen');">
+<svg viewBox="0 0 18 18"><path d="M15 1H3a2 2 0 00-2 2v2h16V3a2 2 0 00-2-2zM1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 002-2v-2H1v2zm16-7H1v4h16V6z"></path></svg>
+</button>
 </nav>
 </template>
 
 <header id="MenuBarTarget"></header>
-<div style="visibility: hidden; position: fixed; height: 50%; width:50%; background-color: blue; opacity: 0.5  ">
-	just a test
-</div>
-<section>
+
+<section id="MenuScreen">
 <div id="MainBody">
 <button onclick="CloneTemplate(this);" TemplateID="T001-001" CloneToID="MainBody">Show hidden content</button>
 </div>
 </section>
 
-<article>
-	<section>
+<article class="autoFitGrid">
+<section style="grid-row: span 2;">
 	<h2>Skills</h2>
 	<p>web hosting ~ SSL/TSL certs/DNS/domain name registering</p>
 	<p>IP networking ~ configuring firewall/switch/router/server</p>
@@ -226,11 +244,13 @@ function xCloneTemplate(TemplateID,CloneToID) {
 	<p>running a IP phone system ~ configuring IP phones/SIP trunk/setup PBX</p>
 	<p>running a virtual environment ~ Connection a SAN/install hypervisor/virtualize servers</p>
 	<p>network security ~ patches/user permission/firewall rules/group policy/PCI/monitoring logs/internet research/network scanner</p>
-	<p>Programming ~ I know many languages and can learn new ones easily.</p>
+	<p>programming ~ I know many languages and can learn new ones easily.</p>
+	<p>computer repair ~ I have been buying parts and assembling computers from the age of 15.</p>
 </section>
-<section>
+<section style="grid-row: span 3; grid-column: span 2;">
 	<h2>Education Experience</h2>
 	<p>I have a 4 year degree, Bachelor of Science in Computer Science, graduated in 2000.</p>
+	<p>I started using many of the big programming laguages and software when they where new.  I rememeber job ads looking for Java programmers with five years of experience when Java was only one year old.</p>
 	<p>I worked for an small company for 13 years as a network engineer.  I also developed web apps for them.</p>
 	<p>During college and before working at the small company.  I worked part time web development jobs, for around 9 years.  I started doing that around 1996.</p>
 	<p>I taught myself, most all my skills.  I learn more about working with people in college, than I did about computers.  I took a job to pay for college working in the rec center on campue.  It was a pool hall/bowling ally/video arcade.  I got to break up fights, deal with angry customers, and server food.  We had a C Food Safety Grade.</p>
@@ -260,9 +280,9 @@ function xCloneTemplate(TemplateID,CloneToID) {
 	<p>Dell Compellent/EqualLogic</p>
 	<p>Dell Servers Generation 10 to 14</p>
 	<p>Dell/Cisco managed switches</p>
-	<p>Cisco/SonincWall/pfSense firewalls</p>
+	<p>Cisco/SonicWall/pfSense firewalls</p>
 	<p>LTO tape autoloader backups 2006-2018</p>
-	<p>Cisoo/Yealink IP phones</p>
+	<p>Cisco/Yealink IP phones</p>
 </section>
 <section>
 	<h2>Software</h2>
