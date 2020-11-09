@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Hello World demo page">
+    <meta name="author" content="ZombieMonkey@gmx.com">
+<style>
+button, input[type="submit"] {
+    background-color: #ddd;
+    padding: 10px 20px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+button:hover, input[type="submit"]:hover {
+    background-color: #bfb;
+    border-color: #4c4;
+}
+button:focus, input[type="submit"]:focus {
+    border: 2px dashed #444;
+}
+textarea {
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+fieldset {
+    margin: 5px;
+    border: 2px solid #444;
+    border-radius: 4px;
+    padding: 5px;
+}
+hr {
+    border: 1px solid #444;
+    margin: 5px;
+}
+input[type="file"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+input[type="checkbox"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+input[type="checkbox"]:checked + label {
+    background-color:#bfb;
+    border-color: #4c4;
+}
+input[type="checkbox"]:focus + label {
+    border: 2px dashed #444;
+}
+
+input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+label {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 10px 20px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+input[type="radio"]:checked + label {
+    background-color:#bfb;
+    border-color: #4c4;
+}
+input[type="radio"]:focus + label {
+    border: 2px dashed #444;
+}
+label:hover {
+  background-color: #dfd;
+}
+* {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1rem;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    list-style-type: none;
+    color: inherit;
+    background-color: inherit;
+}
+</style>
+<script type="text/javascript">
+    
+</script>
+</head>
+<body>
+<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">    
+  <fieldset >
+    <legend >Personalia:</legend>
+    <button type="button">button</button>
+    <input type="submit" value="Submit">
+<hr>
+<input type="range" id="a" value="50">
++<input type="number" id="b" value="25">
+=<output name="x" for="a b"></output>
+<hr>
+  <input type="radio" id="male" name="gender" value="male">
+  <label for="male">Male</label><br>
+  <input type="radio" id="female" name="gender" value="female">
+  <label for="female">Female</label><br>
+  <input type="radio" id="other" name="gender" value="other">
+  <label for="other">Other</label>
+  <hr>
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label>
+<hr>
+  <label for="favcolor">Select your favorite color:</label>
+  <input type="color" id="favcolor" name="favcolor">
+<hr>
+  <label for="datemax">Enter a date before 1980-01-01:</label>
+  <input type="date" id="datemax" name="datemax" max="1979-12-31"><br><br>
+  <label for="datemin">Enter a date after 2000-01-01:</label>
+  <input type="date" id="datemin" name="datemin" min="2000-01-02">
+<hr>
+  <label for="birthdaytime">Birthday (date and time):</label>
+  <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+<hr>
+  <label for="myfile">Select a file:</label>
+  <input type="file" id="myfile" name="myfile">
+<hr>
+  <label for="bdaymonth">Birthday (month and year):</label>
+  <input type="month" id="bdaymonth" name="bdaymonth">
+<hr>
+  <label for="phone">Enter your phone number:</label>
+  <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+<hr>
+  <label for="appt">Select a time:</label>
+  <input type="time" id="appt" name="appt">
+<hr>
+  <label for="homepage">Add your homepage:</label>
+  <input type="url" id="homepage" name="homepage">
+<hr>
+  <label for="week">Select a week:</label>
+  <input type="week" id="week" name="week">
+<hr>
+ <label for="cars">Choose a car:</label>
+<select name="cars" id="cars">
+  <optgroup label="Swedish Cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+  </optgroup>
+  <optgroup label="German Cars">
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </optgroup>
+</select>
+<hr>
+<textarea id="w3review" name="w3review" rows="4" cols="50">
+At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+</textarea>
+<hr>
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="lname">Last name:</label>
+    <input type="text" id="lname" name="lname"><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" name="birthday"><br><br>
+  </fieldset>
+</form>
+</body>
+</html>
