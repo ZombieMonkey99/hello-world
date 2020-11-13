@@ -19,17 +19,27 @@ XXXXXXXXXXXXXXXX
 -->
 <style>
 :root {
---FontColor1: Black;
+--FontColor: Black;
 --Background1: LightCyan;
-
---FontColor2: Black;
 --Background2: PowderBlue;
-
---FontColor3: Black;
 --Background3: DeepSkyBlue;
-
 --ControlBackground: SteelBlue;
 --HoverBackground: DarkBlue;
+
+--LightFontColor: Black;
+--LightBackground1: LightCyan;
+--LightBackground2: PowderBlue;
+--LightBackground3: DeepSkyBlue;
+--LightControlBackground: SteelBlue;
+--LightHoverBackground: DarkBlue;
+
+--DarkFontColor: White;
+--DarkBackground1: Navy;
+--DarkBackground2: Maroon;
+--DarkBackground3: Indigo;
+--DarkControlBackground: GreenYellow;
+--DarkHoverBackground: Aqua;
+
 --PageFontFamily: "Times New Roman", Times, serif;
 --fontsizeHTML: 16px;
 }
@@ -47,7 +57,7 @@ html {
 	font-size: var(--fontsizeHTML);
 	width: 100%;
 	height: 100%;
-	color: var(--FontColor1);
+	color: var(--FontColor);
 	background-color: var(--Background1);
 }
 .autoFitGrid {
@@ -69,12 +79,12 @@ html {
 }
 .autoFitGrid h2 {
 	font-size: 1.5rem;
-	color: var(--FontColor3);
+	color: var(--FontColor);
 	background-color: var(--Background3);
 	text-align: center;
 }
 .autoFitGrid p {
-	color: var(--FontColor3);
+	color: var(--FontColor);
 	background-color: var(--Background3);
 	padding-left: 0.4rem;
 	padding-right: 0.4rem;
@@ -83,7 +93,7 @@ html {
 	font-weight: 700;
 }
 .autoFitGrid p:nth-child(even) {
-	color: var(--FontColor2);
+	color: var(--FontColor);
 	background-color: var(--Background2);
 }
 #MenuScreen {
@@ -91,7 +101,7 @@ html {
 	position: fixed;
 	height: 100%;
 	width: 100%;
-	color: var(--FontColor1);
+	color: var(--FontColor);
 	background-color: var(--Background1);
 }
 #MenuScreen svg {
@@ -113,7 +123,7 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
-	color: var(--FontColor2);
+	color: var(--FontColor);
 	background-color: var(--Background2);
 }
 nav * {
@@ -147,6 +157,38 @@ nav * svg {
 	color: var(--HoverBackground);
 	background-color: var(--Background1);
 }
+/*radio style start*/
+fieldset {
+    border: 2px solid var(--ControlBackground);
+    border-radius: 1.2rem;
+    padding: 0.5rem;
+    display: inline-block;
+}
+input[type="checkbox"], input[type="radio"]  {
+	opacity: 0;
+	position: fixed;
+	width: 0;
+}
+input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
+	border-color: var(--HoverBackground);
+	color: var(--HoverBackground);
+}
+input[type="checkbox"]:focus + label, input[type="radio"]:checked + label {
+}
+label {
+    display: inline-block;
+    background-color: var(--Background2);
+    padding: 0.5rem;
+    border: 2px solid var(--ControlBackground);;
+    border-radius: 1.2rem;
+}
+label:hover {
+	color: var(--HoverBackground);
+	border-color: var(--HoverBackground);
+}
+/*radio style end*/
+
+
 /*sticky top menu bar style end*/
 </style>
 <script type="text/javascript">
@@ -195,32 +237,28 @@ function FontPicker() {
 	let r = document.querySelector(':root');
 	let rs = getComputedStyle(r);
 	r.style.setProperty('--PageFontFamily', 
-		document.getElementById("FontPicker").value);
+		document.querySelector("input[name=FontType]:checked").value);
 }
 
 function LightDarkToggle() {
 	let r = document.querySelector(':root');
 	let rs = getComputedStyle(r);
-	if (~rs.getPropertyValue('--FontColor1').indexOf('Black')) {
-		//Set to dark
-		r.style.setProperty('--FontColor1', 'White');
-		r.style.setProperty('--FontColor2', 'White');
-		r.style.setProperty('--FontColor3', 'White');
-		r.style.setProperty('--Background1', 'Navy');
-		r.style.setProperty('--Background2', 'Maroon');
-		r.style.setProperty('--Background3', 'Indigo');
-		r.style.setProperty('--ControlBackground', 'GreenYellow');
-		r.style.setProperty('--HoverBackground', 'Aqua');
+	if (~rs.getPropertyValue('--FontColor').indexOf(rs.getPropertyValue('--LightFontColor'))) {
+		//Set to dark		
+		r.style.setProperty('--FontColor', rs.getPropertyValue('--DarkFontColor'));
+		r.style.setProperty('--Background1', rs.getPropertyValue('--DarkBackground1'));
+		r.style.setProperty('--Background2', rs.getPropertyValue('--DarkBackground2'));
+		r.style.setProperty('--Background3', rs.getPropertyValue('--DarkBackground3'));
+		r.style.setProperty('--ControlBackground', rs.getPropertyValue('--DarkControlBackground'));
+		r.style.setProperty('--HoverBackground', rs.getPropertyValue('--DarkHoverBackground'));
 	} else {
 		//Set to light
-		r.style.setProperty('--FontColor1', 'Black');
-		r.style.setProperty('--FontColor2', 'Black');
-		r.style.setProperty('--FontColor3', 'Black');
-		r.style.setProperty('--Background1', 'LightCyan');
-		r.style.setProperty('--Background2', 'PowderBlue');
-		r.style.setProperty('--Background3', 'DeepSkyBlue');
-		r.style.setProperty('--ControlBackground', 'SteelBlue');
-		r.style.setProperty('--HoverBackground', 'DarkBlue');
+		r.style.setProperty('--FontColor', rs.getPropertyValue('--LightFontColor'));
+		r.style.setProperty('--Background1', rs.getPropertyValue('--LightBackground1'));
+		r.style.setProperty('--Background2', rs.getPropertyValue('--LightBackground2'));
+		r.style.setProperty('--Background3', rs.getPropertyValue('--LightBackground3'));
+		r.style.setProperty('--ControlBackground', rs.getPropertyValue('--LightControlBackground'));
+		r.style.setProperty('--HoverBackground', rs.getPropertyValue('--LightHoverBackground'));
 	}
 }
 
@@ -334,11 +372,19 @@ function xCloneTemplate(TemplateID,CloneToID) {
 
 <section id="MenuScreen">
 
-<select id="FontPicker" onchange="FontPicker();">
-	<option selected value='"Times New Roman", Times, serif'>"Times New Roman", Times, serif</option>
-	<option value='"Courier New", Courier, monospace'>"Courier New", Courier, monospace</option>
-	<option value='Arial, Helvetica, sans-serif'>Arial, Helvetica, sans-serif</option>
-</select>
+<fieldset >
+<legend>Font Type:</legend>
+
+<input id="font1" onchange="FontPicker();" type="radio" name="FontType" value='"Times New Roman", Times, serif' checked>
+<label for="font1">"Times New Roman", Times, serif</label>
+
+<input id="font2" onchange="FontPicker();" type="radio" name="FontType" value='"Courier New", Courier, monospace'>
+<label for="font2">"Courier New", Courier, monospace</label>
+
+<input id="font3" onchange="FontPicker();" type="radio" name="FontType" value="Arial, Helvetica, sans-serif">
+<label for="font3">Arial, Helvetica, sans-serif</label>
+
+</fieldset>
 
 <div id="MainBody">
 <button onclick="CloneTemplate(this);" TemplateID="T001-001" CloneToID="MainBody">Show hidden content</button>
