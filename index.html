@@ -34,11 +34,11 @@ XXXXXXXXXXXXXXXX
 --LightHoverBackground: DarkBlue;
 
 --DarkFontColor: White;
---DarkBackground1: Navy;
---DarkBackground2: Maroon;
---DarkBackground3: Indigo;
---DarkControlBackground: GreenYellow;
---DarkHoverBackground: Aqua;
+--DarkBackground1: #03071E;
+--DarkBackground2: #370617;
+--DarkBackground3: #6A040F;
+--DarkControlBackground: #FAA307;
+--DarkHoverBackground: #FFBA08;
 
 --PageFontFamily: "Times New Roman", Times, serif;
 --fontsizeHTML: 16px;
@@ -101,6 +101,7 @@ html {
 	position: fixed;
 	height: 100%;
 	width: 100%;
+	overflow: auto;
 	color: var(--FontColor);
 	background-color: var(--Background1);
 }
@@ -255,6 +256,30 @@ function FontSmaller() {
 	r.style.setProperty('--fontsizeHTML', cursize);
 }
 
+function PalettePicker(passback, colorList) {
+	let prefix = "--Light";
+	let prefix2 = "newLight";
+	if (~passback.value.indexOf('Dark')) {
+		prefix = "--Dark";
+		prefix2 = "newDark";
+	}
+
+	let r = document.querySelector(':root');
+	let rs = getComputedStyle(r);
+	r.style.setProperty(prefix+"Background1", colorList.Background1);
+	r.style.setProperty(prefix+"Background2", colorList.Background2);
+	r.style.setProperty(prefix+"Background3", colorList.Background3);
+	r.style.setProperty(prefix+"ControlBackground", colorList.ControlBackground);
+	r.style.setProperty(prefix+"HoverBackground", colorList.HoverBackground);
+
+	document.getElementById(prefix2+"Background1").value = colorList.Background1;
+	document.getElementById(prefix2+"Background2").value = colorList.Background2;
+	document.getElementById(prefix2+"Background3").value = colorList.Background3;
+	document.getElementById(prefix2+"ControlBackground").value = colorList.ControlBackground;
+	document.getElementById(prefix2+"HoverBackground").value = colorList.HoverBackground;
+
+}
+
 function FontPicker() {
 	let r = document.querySelector(':root');
 	let rs = getComputedStyle(r);
@@ -264,7 +289,7 @@ function FontPicker() {
 
 function SetColorInTextBox(passback, targetID) {
 	document.getElementById(targetID).focus();
-	document.getElementById(targetID).value = passback.value; 
+	document.getElementById(targetID).value = passback.value;
 	document.getElementById(targetID).onchange();
 }
 
@@ -471,6 +496,61 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground1);">Hover Text </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground3);">Backgrounds</span>
 </fieldset>
 
+<fieldset>
+<legend>Preset Light Palette</legend>
+<input id="Light0" onclick='PalettePicker(this,{
+			Background1:"LightCyan", 
+			Background2:"PowderBlue", 
+			Background3:"DeepSkyBlue",
+			ControlBackground:"SteelBlue",
+			HoverBackground:"DarkBlue"
+		});' type="radio" name="LightPalette" value="Light0" checked>
+<label for="Light0">Default</label>
+<input id="Light1" onclick='PalettePicker(this,{
+			Background1:"#E9C46A", 
+			Background2:"#F4A261", 
+			Background3:"#E76F51",
+			ControlBackground:"#264653",
+			HoverBackground:"#2A9D8F"
+		});' type="radio" name="LightPalette" value="Light1">
+<label for="Light1">Light1</label>
+<input id="Light2" onclick='PalettePicker(this,{
+			Background1:"#FFCDB2", 
+			Background2:"#FFB4A2", 
+			Background3:"#E5989B",
+			ControlBackground:"#B5838D",
+			HoverBackground:"#6D6875"
+		});' type="radio" name="LightPalette" value="Light2">
+<label for="Light2">Light2</label>
+</fieldset>
+
+<fieldset>
+<legend>Preset Dark Palette</legend>
+<input id="Dark0" onclick='PalettePicker(this,{
+			Background1:"#03071E", 
+			Background2:"#370617", 
+			Background3:"#6A040F",
+			ControlBackground:"#FAA307",
+			HoverBackground:"#FFBA08"
+		});' type="radio" name="DarkPalette" value="Dark0" checked>
+<label for="Dark0">Default</label>
+<input id="Dark1" onclick='PalettePicker(this,{
+			Background1:"#0B132B", 
+			Background2:"#1C2541", 
+			Background3:"#3A506B",
+			ControlBackground:"#5BC0BE",
+			HoverBackground:"#6FFFE9"
+		});' type="radio" name="DarkPalette" value="Dark1">
+<label for="Dark1">Dark1</label>
+<input id="Dark2" onclick='PalettePicker(this,{
+			Background1:"#03045E", 
+			Background2:"#0077B6", 
+			Background3:"#00B4D8",
+			ControlBackground:"#90E0EF",
+			HoverBackground:"#CAF0F8"
+		});' type="radio" name="DarkPalette" value="Dark2">
+<label for="Dark2">Dark2</label>
+</fieldset>
 
 <div id="MainBody">
 <button onclick="CloneTemplate(this);" TemplateID="T001-001" CloneToID="MainBody">Show hidden content</button>
