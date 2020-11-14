@@ -146,7 +146,7 @@ nav * svg {
 	font-size: 2rem;
 	width: 0;
 	border-radius: 1.2rem;
-	padding-left: 0.5rem;
+	padding: 0 0 0 0.5rem;
 	border: 2px solid var(--ControlBackground);
 	color: var(--ControlBackground);
 	background-color: var(--Background1);
@@ -157,7 +157,7 @@ nav * svg {
 	color: var(--HoverBackground);
 	background-color: var(--Background1);
 }
-/*radio style start*/
+/*input style start*/
 fieldset {
     border: 2px solid var(--ControlBackground);
     border-radius: 1.2rem;
@@ -176,17 +176,39 @@ input[type="checkbox"]:checked + label, input[type="radio"]:checked + label {
 input[type="checkbox"]:focus + label, input[type="radio"]:checked + label {
 }
 label {
-    display: inline-block;
-    background-color: var(--Background2);
-    padding: 0.5rem;
-    border: 2px solid var(--ControlBackground);;
-    border-radius: 1.2rem;
+	display: inline-block;
+	background-color: var(--Background2);
+	padding: 0.5rem;
+	border: 2px solid var(--ControlBackground);
+	border-radius: 1.2rem;
 }
 label:hover {
 	color: var(--HoverBackground);
 	border-color: var(--HoverBackground);
 }
-/*radio style end*/
+input[type="file"], input[type="color"] {
+	opacity: 0;
+	position: fixed;
+	width: 0;
+}
+input {
+	border: 2px solid var(--ControlBackground);;
+	border-radius: 1.2rem;
+	padding: 0.5rem;
+}
+input:hover {
+	color: var(--HoverBackground);
+	border-color: var(--HoverBackground);
+}
+hr {
+    border: 1px solid var(--ControlBackground);
+    margin: 0.3rem;
+}
+.newColorBox {
+	width: 4.5rem;
+}
+
+/*input style end*/
 
 
 /*sticky top menu bar style end*/
@@ -240,6 +262,17 @@ function FontPicker() {
 		document.querySelector("input[name=FontType]:checked").value);
 }
 
+function SetColorInTextBox(passback, targetID) {
+	document.getElementById(targetID).focus();
+	document.getElementById(targetID).value = passback.value; 
+	document.getElementById(targetID).onchange();
+}
+
+function SetNewColor(passback,TargetColor) {
+	let r = document.querySelector(':root');
+	let rs = getComputedStyle(r);
+	r.style.setProperty(TargetColor, passback.value);
+}
 function LightDarkToggle() {
 	let r = document.querySelector(':root');
 	let rs = getComputedStyle(r);
@@ -372,19 +405,72 @@ function xCloneTemplate(TemplateID,CloneToID) {
 
 <section id="MenuScreen">
 
-<fieldset >
-<legend>Font Type:</legend>
-
+<fieldset>
+<legend>Font Type</legend>
 <input id="font1" onchange="FontPicker();" type="radio" name="FontType" value='"Times New Roman", Times, serif' checked>
 <label for="font1">"Times New Roman", Times, serif</label>
-
 <input id="font2" onchange="FontPicker();" type="radio" name="FontType" value='"Courier New", Courier, monospace'>
 <label for="font2">"Courier New", Courier, monospace</label>
-
 <input id="font3" onchange="FontPicker();" type="radio" name="FontType" value="Arial, Helvetica, sans-serif">
 <label for="font3">Arial, Helvetica, sans-serif</label>
-
 </fieldset>
+
+<fieldset>
+<legend>Light Color</legend>
+<label for="PickLightBackground1">Background1</label>
+<input type="color" id="PickLightBackground1" onchange="SetColorInTextBox(this,'newLightBackground1');">
+<input type="text" id="newLightBackground1" class="newColorBox" onchange="SetNewColor(this,'--LightBackground1');">
+<span style="color: var(--LightFontColor); background-color: var(--LightBackground1);">Normal Text on Background1</span>
+<hr>
+<label for="PickLightBackground2">Background2</label>
+<input type="color" id="PickLightBackground2" onchange="SetColorInTextBox(this,'newLightBackground2');">
+<input type="text" id="newLightBackground2" class="newColorBox" onchange="SetNewColor(this,'--LightBackground2');">
+<span style="color: var(--LightFontColor); background-color: var(--LightBackground2);">Normal Text on Background2</span>
+<hr>
+<label for="PickLightBackground3">Background3</label>
+<input type="color" id="PickLightBackground3" onchange="SetColorInTextBox(this,'newLightBackground3');">
+<input type="text" id="newLightBackground3" class="newColorBox" onchange="SetNewColor(this,'--LightBackground3');">
+<span style="color: var(--LightFontColor); background-color: var(--LightBackground3);">Normal Text on Background3</span>
+<hr>
+<label for="PickLightControlBackground">Control</label>
+<input type="color" id="PickLightControlBackground" onchange="SetColorInTextBox(this,'newLightControlBackground');">
+<input type="text" id="newLightControlBackground" class="newColorBox" onchange="SetNewColor(this,'--LightControlBackground');">
+<span style="color: var(--LightControlBackground); background-color: var(--LightBackground1);">Control Text </span><span style="color: var(--LightControlBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightControlBackground); background-color: var(--LightBackground3);">Backgrounds</span>
+<hr>
+<label for="PickLightHoverBackground">Hover</label>
+<input type="color" id="PickLightHoverBackground" onchange="SetColorInTextBox(this,'newLightHoverBackground');">
+<input type="text" id="newLightHoverBackground" class="newColorBox" onchange="SetNewColor(this,'--LightHoverBackground');">
+<span style="color: var(--LightHoverBackground); background-color: var(--LightBackground1);">Hover Text </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground3);">Backgrounds</span>
+</fieldset>
+
+<fieldset>
+<legend>Dark Color</legend>
+<label for="PickDarkBackground1">Background1</label>
+<input type="color" id="PickDarkBackground1" onchange="SetColorInTextBox(this,'newDarkBackground1');">
+<input type="text" id="newDarkBackground1" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground1');">
+<span style="color: var(--DarkFontColor); background-color: var(--DarkBackground1);">Normal Text on Background1</span>
+<hr>
+<label for="PickDarkBackground2">Background2</label>
+<input type="color" id="PickDarkBackground2" onchange="SetColorInTextBox(this,'newDarkBackground2');">
+<input type="text" id="newDarkBackground2" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground2');">
+<span style="color: var(--DarkFontColor); background-color: var(--DarkBackground2);">Normal Text on Background2</span>
+<hr>
+<label for="PickDarkBackground3">Background3</label>
+<input type="color" id="PickDarkBackground3" onchange="SetColorInTextBox(this,'newDarkBackground3');">
+<input type="text" id="newDarkBackground3" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground3');">
+<span style="color: var(--DarkFontColor); background-color: var(--DarkBackground3);">Normal Text on Background3</span>
+<hr>
+<label for="PickDarkControlBackground">Control</label>
+<input type="color" id="PickDarkControlBackground" onchange="SetColorInTextBox(this,'newDarkControlBackground');">
+<input type="text" id="newDarkControlBackground" class="newColorBox" onchange="SetNewColor(this,'--DarkControlBackground');">
+<span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground1);">Control Text </span><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground3);">Backgrounds</span>
+<hr>
+<label for="PickDarkHoverBackground">Hover</label>
+<input type="color" id="PickDarkHoverBackground" onchange="SetColorInTextBox(this,'newDarkHoverBackground');">
+<input type="text" id="newDarkHoverBackground" class="newColorBox" onchange="SetNewColor(this,'--DarkHoverBackground');">
+<span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground1);">Hover Text </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground3);">Backgrounds</span>
+</fieldset>
+
 
 <div id="MainBody">
 <button onclick="CloneTemplate(this);" TemplateID="T001-001" CloneToID="MainBody">Show hidden content</button>
@@ -410,15 +496,14 @@ function xCloneTemplate(TemplateID,CloneToID) {
 	<h2>Education Experience</h2>
 	<p>I have a 4 year degree, Bachelor of Science in Computer Science, graduated in 2000, at <a href="https://www.wichita.edu/">WSU</a>.</p>
 	<p>I started using many of the big programming languages and software when they where new.  I remember job ads looking for Java programmers with five years of experience when Java was only one year old.</p>
-	<p>I worked for a small company for 13 years as a network engineer.  I also developed web apps for them.</p>
 	<p>I worked part-time doing web development jobs, for around 9 years starting in 1996, during collage.</p>
 	<p>I taught myself all my skills.  I learned more about working with people in college than I did about computers.  I took a job to pay for college working in the rec center on campus.  It was a pool hall/bowling alley/video arcade.  I got to break up fights, deal with angry customers, and serve food.  We had a <a href="https://www.dininggrades.com/blog/grade-of-c/">C Food Safety Grade</a>.</p>
-	<p>While working for the small company, I took them from a PRI line with a Cisco CUCM, and 3 others servers to do call recording, a receptionist console, and paging. I replaced it all with FreePBX and a SIP trunk that reduced costs.  It ended up being around $0.01 / minute, with no licensing costs.</p>
+	<p>While working for the small company, I took them from a <a href="https://serverfault.com/questions/533858/how-to-configure-a-2821-isr-to-an-asterisk-pbx-on-a-pri-line/541975">PRI line with a Cisco CUCM</a>, and 3 others servers to do call recording, a receptionist console, and paging. I replaced it all with FreePBX and a SIP trunk that reduced costs.  It ended up being around $0.01 / minute, with no licensing costs.</p>
 	<p>Before I took over the operation of the small company's network, they had to reinstall windows on 2 to 3 desktop computers a week that where getting infested with viruses and malware. This was before ransomeware.  So I never had to deal with ransomeware, I kept it all out of the network on my watch, for 10+ years.</p>
 	<p>While working at the small company we had to move the office to a new location, and the production servers where running in that office.  I used my disaster recovery planning to move the servers to the private cloud location we replicated to.  It worked so well, we just left the servers at the private cloud location, and accessed them remotely.</p>
 	<p>When I took over the email server at the small company, we were getting 8000-10000 emails a day.  We were getting 2 or 3 different phishing attack a day.  When I left it was 500-300 e-mails a day, and a phishing attack was a rare thing.</p>
 	<p>	You can resize this page to see responsive design layout, the bar at the top is flex and the main page is grid.  This page is a github project that auto-deploys to netlify.</p>
-	<p>The small company I worked for was an insurance company called <a href="https://www.iai-online.com">Inter-Americas Insurance Corporation</a>.  I worked for them for 14 years from 2006 to 2020.  My supervisor's name was <a href="mailto:speschka@iai-online.com">Steve Peschka</a>.</p>
+	<p>The small company I worked for was an insurance company called <a href="https://www.iai-online.com">Inter-Americas Insurance Corporation</a>.  I worked for them for 13 years from 2006 to 2020.  My supervisor's name was <a href="mailto:speschka@iai-online.com">Steve Peschka</a>.  My jobs where IP networking,  security, e-mail, IP phones, scripting jobs on servers, and software development mostly in .NET and web apps.</p>
 </section>
 <section>
 	<h2>Open Source Web development</h2>
