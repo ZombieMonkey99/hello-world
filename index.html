@@ -96,6 +96,18 @@ html {
 	color: var(--FontColor);
 	background-color: var(--Background2);
 }
+/*Menu Screen start*/
+#MenuScreen footer {
+	height: 100%;
+}
+#MenuScreenControls {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	/*grid-gap: 0.5rem; */
+}
+#MenuScreenControls fieldset {
+	margin: 0.4rem;
+}
 #MenuScreen {
 	visibility: hidden;
 	position: fixed;
@@ -110,6 +122,7 @@ html {
 	width: auto;
 	right: 0;
 }
+/*Menu Screen end*/
 /*sticky top menu bar style start*/
 svg:hover {
 	cursor: pointer;
@@ -148,6 +161,7 @@ nav * svg {
 	width: 0;
 	border-radius: 1.2rem;
 	padding: 0 0 0 0.5rem;
+	margin: 0.3rem;
 	border: 2px solid var(--ControlBackground);
 	color: var(--ControlBackground);
 	background-color: var(--Background1);
@@ -159,6 +173,9 @@ nav * svg {
 	background-color: var(--Background1);
 }
 /*input style start*/
+span {
+  white-space: nowrap;
+}
 fieldset {
     border: 2px solid var(--ControlBackground);
     border-radius: 1.2rem;
@@ -178,6 +195,7 @@ input[type="checkbox"]:focus + label, input[type="radio"]:checked + label {
 }
 label {
 	display: inline-block;
+	margin: 0.2rem;
 	background-color: var(--Background2);
 	padding: 0.5rem;
 	border: 2px solid var(--ControlBackground);
@@ -196,6 +214,7 @@ input {
 	border: 2px solid var(--ControlBackground);;
 	border-radius: 1.2rem;
 	padding: 0.5rem;
+	margin: 0.2rem;
 }
 input:hover {
 	color: var(--HoverBackground);
@@ -277,7 +296,6 @@ function PalettePicker(passback, colorList) {
 	document.getElementById(prefix2+"Background3").value = colorList.Background3;
 	document.getElementById(prefix2+"ControlBackground").value = colorList.ControlBackground;
 	document.getElementById(prefix2+"HoverBackground").value = colorList.HoverBackground;
-
 }
 
 function FontPicker() {
@@ -430,6 +448,7 @@ function xCloneTemplate(TemplateID,CloneToID) {
 
 <section id="MenuScreen">
 
+<section id="MenuScreenControls">
 <fieldset>
 <legend>Font Type</legend>
 <input id="font1" onchange="FontPicker();" type="radio" name="FontType" value='"Times New Roman", Times, serif' checked>
@@ -440,7 +459,7 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <label for="font3">Arial, Helvetica, sans-serif</label>
 </fieldset>
 
-<fieldset>
+<fieldset style="grid-row: span 2;">
 <legend>Light Color</legend>
 <label for="PickLightBackground1">Background1</label>
 <input type="color" id="PickLightBackground1" onchange="SetColorInTextBox(this,'newLightBackground1');">
@@ -466,9 +485,35 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <input type="color" id="PickLightHoverBackground" onchange="SetColorInTextBox(this,'newLightHoverBackground');">
 <input type="text" id="newLightHoverBackground" class="newColorBox" onchange="SetNewColor(this,'--LightHoverBackground');">
 <span style="color: var(--LightHoverBackground); background-color: var(--LightBackground1);">Hover Text </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground3);">Backgrounds</span>
+<hr>
+<input id="Light0" onclick='PalettePicker(this,{
+			Background1:"LightCyan", 
+			Background2:"PowderBlue", 
+			Background3:"DeepSkyBlue",
+			ControlBackground:"SteelBlue",
+			HoverBackground:"DarkBlue"
+		});' type="radio" name="LightPalette" value="Light0" checked>
+<label for="Light0">Default</label>
+<input id="Light1" onclick='PalettePicker(this,{
+			Background1:"#E9C46A", 
+			Background2:"#F4A261", 
+			Background3:"#E76F51",
+			ControlBackground:"#264653",
+			HoverBackground:"#2A9D8F"
+		});' type="radio" name="LightPalette" value="Light1">
+<label for="Light1">Light1</label>
+<input id="Light2" onclick='PalettePicker(this,{
+			Background1:"#FFCDB2", 
+			Background2:"#FFB4A2", 
+			Background3:"#E5989B",
+			ControlBackground:"#B5838D",
+			HoverBackground:"#6D6875"
+		});' type="radio" name="LightPalette" value="Light2">
+<label for="Light2">Light2</label>
+
 </fieldset>
 
-<fieldset>
+<fieldset style="grid-row: span 2;">
 <legend>Dark Color</legend>
 <label for="PickDarkBackground1">Background1</label>
 <input type="color" id="PickDarkBackground1" onchange="SetColorInTextBox(this,'newDarkBackground1');">
@@ -494,38 +539,7 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <input type="color" id="PickDarkHoverBackground" onchange="SetColorInTextBox(this,'newDarkHoverBackground');">
 <input type="text" id="newDarkHoverBackground" class="newColorBox" onchange="SetNewColor(this,'--DarkHoverBackground');">
 <span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground1);">Hover Text </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground3);">Backgrounds</span>
-</fieldset>
-
-<fieldset>
-<legend>Preset Light Palette</legend>
-<input id="Light0" onclick='PalettePicker(this,{
-			Background1:"LightCyan", 
-			Background2:"PowderBlue", 
-			Background3:"DeepSkyBlue",
-			ControlBackground:"SteelBlue",
-			HoverBackground:"DarkBlue"
-		});' type="radio" name="LightPalette" value="Light0" checked>
-<label for="Light0">Default</label>
-<input id="Light1" onclick='PalettePicker(this,{
-			Background1:"#E9C46A", 
-			Background2:"#F4A261", 
-			Background3:"#E76F51",
-			ControlBackground:"#264653",
-			HoverBackground:"#2A9D8F"
-		});' type="radio" name="LightPalette" value="Light1">
-<label for="Light1">Light1</label>
-<input id="Light2" onclick='PalettePicker(this,{
-			Background1:"#FFCDB2", 
-			Background2:"#FFB4A2", 
-			Background3:"#E5989B",
-			ControlBackground:"#B5838D",
-			HoverBackground:"#6D6875"
-		});' type="radio" name="LightPalette" value="Light2">
-<label for="Light2">Light2</label>
-</fieldset>
-
-<fieldset>
-<legend>Preset Dark Palette</legend>
+<hr>
 <input id="Dark0" onclick='PalettePicker(this,{
 			Background1:"#03071E", 
 			Background2:"#370617", 
@@ -551,11 +565,17 @@ function xCloneTemplate(TemplateID,CloneToID) {
 		});' type="radio" name="DarkPalette" value="Dark2">
 <label for="Dark2">Dark2</label>
 </fieldset>
+</section> 
 
+<footer>
+</footer>
+
+</section>
+
+<section style="display: none;">
 <div id="MainBody">
 <button onclick="CloneTemplate(this);" TemplateID="T001-001" CloneToID="MainBody">Show hidden content</button>
 </div>
-
 </section>
 
 <article class="autoFitGrid">
