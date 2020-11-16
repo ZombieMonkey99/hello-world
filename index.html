@@ -176,16 +176,27 @@ nav * svg {
 .FontBox {
 	display: grid;
 	grid-template-columns: auto;
+	text-align: center;
 }
 .ColorBox div {
     grid-column: span 3;
+    justify-self: center;
+}
+@media (max-width: 320px) {
+	.ColorBox input {
+    	width: 90%;
+	}
 }
 .ColorBox input {
     grid-column: span 2;
 }
+.ColorBox label {
+	text-align: center;
+}
 .ColorBox {
 	display: grid;
 	grid-template-columns: auto auto auto;
+	width: 100%;
 }
 fieldset {
     border: 2px solid var(--ControlBackground);
