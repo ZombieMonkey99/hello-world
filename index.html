@@ -174,21 +174,20 @@ nav * svg {
 }
 /*input style start*/
 .FontBox {
+	display: grid;
 	grid-template-columns: auto;
 }
-fieldset div {
+.ColorBox div {
     grid-column: span 3;
-    align-content: center;
 }
-fieldset input {
+.ColorBox input {
     grid-column: span 2;
 }
-fieldset {
+.ColorBox {
 	display: grid;
 	grid-template-columns: auto auto auto;
-	justify-content: stretch;
-	align-items: center;
-	align-content: stretch;
+}
+fieldset {
     border: 2px solid var(--ControlBackground);
     border-radius: 1.2rem;
     padding: 0.5rem;
@@ -460,18 +459,21 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <section id="MenuScreen">
 
 <section id="MenuScreenControls">
-<fieldset class="FontBox">
+<fieldset>
 <legend>Font Type</legend>
+<div class="FontBox">
 <input id="font1" onchange="FontPicker();" type="radio" name="FontType" value='"Times New Roman", Times, serif' checked>
 <label for="font1">"Times New Roman", Times, serif</label>
 <input id="font2" onchange="FontPicker();" type="radio" name="FontType" value='"Courier New", Courier, monospace'>
 <label for="font2">"Courier New", Courier, monospace</label>
 <input id="font3" onchange="FontPicker();" type="radio" name="FontType" value="Arial, Helvetica, sans-serif">
 <label for="font3">Arial, Helvetica, sans-serif</label>
+</div>
 </fieldset>
 
 <fieldset style="grid-row: span 2;">
 <legend>Light Color</legend>
+<div class="ColorBox">
 <label for="PickLightBackground1">Background1</label>
 <input type="color" id="PickLightBackground1" onchange="SetColorInTextBox(this,'newLightBackground1');">
 <input type="text" id="newLightBackground1" class="newColorBox" onchange="SetNewColor(this,'--LightBackground1');">
@@ -517,10 +519,12 @@ function xCloneTemplate(TemplateID,CloneToID) {
 			HoverBackground:"#6D6875"
 		});' type="radio" name="LightPalette" value="Light2">
 <label for="Light2">Light2</label>
+</div>
 </fieldset>
 
 <fieldset style="grid-row: span 2;">
 <legend>Dark Color</legend>
+<div class="ColorBox">
 <label for="PickDarkBackground1">Background1</label>
 <input type="color" id="PickDarkBackground1" onchange="SetColorInTextBox(this,'newDarkBackground1');">
 <input type="text" id="newDarkBackground1" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground1');">
@@ -565,6 +569,7 @@ function xCloneTemplate(TemplateID,CloneToID) {
 			HoverBackground:"#CAF0F8"
 		});' type="radio" name="DarkPalette" value="Dark2">
 <label for="Dark2">Dark2</label>
+</div>
 </fieldset>
 </section> 
 
