@@ -173,14 +173,25 @@ nav * svg {
 	background-color: var(--Background1);
 }
 /*input style start*/
-span {
-  white-space: nowrap;
+.FontBox {
+	grid-template-columns: auto;
+}
+fieldset div {
+    grid-column: span 3;
+    align-content: center;
+}
+fieldset input {
+    grid-column: span 2;
 }
 fieldset {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	justify-content: stretch;
+	align-items: center;
+	align-content: stretch;
     border: 2px solid var(--ControlBackground);
     border-radius: 1.2rem;
     padding: 0.5rem;
-    display: inline-block;
 }
 input[type="checkbox"], input[type="radio"]  {
 	opacity: 0;
@@ -225,7 +236,7 @@ hr {
     margin: 0.3rem;
 }
 .newColorBox {
-	width: 4.5rem;
+	/*width: 4.5rem;*/
 }
 
 /*input style end*/
@@ -449,7 +460,7 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <section id="MenuScreen">
 
 <section id="MenuScreenControls">
-<fieldset>
+<fieldset class="FontBox">
 <legend>Font Type</legend>
 <input id="font1" onchange="FontPicker();" type="radio" name="FontType" value='"Times New Roman", Times, serif' checked>
 <label for="font1">"Times New Roman", Times, serif</label>
@@ -464,28 +475,24 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <label for="PickLightBackground1">Background1</label>
 <input type="color" id="PickLightBackground1" onchange="SetColorInTextBox(this,'newLightBackground1');">
 <input type="text" id="newLightBackground1" class="newColorBox" onchange="SetNewColor(this,'--LightBackground1');">
-<span style="color: var(--LightFontColor); background-color: var(--LightBackground1);">Normal Text on Background1</span>
-<hr>
+<div><span style="color: var(--LightFontColor); background-color: var(--LightBackground1);">Normal Text on Background1</span></div>
+
 <label for="PickLightBackground2">Background2</label>
 <input type="color" id="PickLightBackground2" onchange="SetColorInTextBox(this,'newLightBackground2');">
 <input type="text" id="newLightBackground2" class="newColorBox" onchange="SetNewColor(this,'--LightBackground2');">
-<span style="color: var(--LightFontColor); background-color: var(--LightBackground2);">Normal Text on Background2</span>
-<hr>
+<div><span style="color: var(--LightFontColor); background-color: var(--LightBackground2);">Normal Text on Background2</span></div>
 <label for="PickLightBackground3">Background3</label>
 <input type="color" id="PickLightBackground3" onchange="SetColorInTextBox(this,'newLightBackground3');">
 <input type="text" id="newLightBackground3" class="newColorBox" onchange="SetNewColor(this,'--LightBackground3');">
-<span style="color: var(--LightFontColor); background-color: var(--LightBackground3);">Normal Text on Background3</span>
-<hr>
+<div><span style="color: var(--LightFontColor); background-color: var(--LightBackground3);">Normal Text on Background3</span></div>
 <label for="PickLightControlBackground">Control</label>
 <input type="color" id="PickLightControlBackground" onchange="SetColorInTextBox(this,'newLightControlBackground');">
 <input type="text" id="newLightControlBackground" class="newColorBox" onchange="SetNewColor(this,'--LightControlBackground');">
-<span style="color: var(--LightControlBackground); background-color: var(--LightBackground1);">Control Text </span><span style="color: var(--LightControlBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightControlBackground); background-color: var(--LightBackground3);">Backgrounds</span>
-<hr>
+<div><span style="color: var(--LightControlBackground); background-color: var(--LightBackground1);">Control Text </span><span style="color: var(--LightControlBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightControlBackground); background-color: var(--LightBackground3);">Backgrounds</span></div>
 <label for="PickLightHoverBackground">Hover</label>
 <input type="color" id="PickLightHoverBackground" onchange="SetColorInTextBox(this,'newLightHoverBackground');">
 <input type="text" id="newLightHoverBackground" class="newColorBox" onchange="SetNewColor(this,'--LightHoverBackground');">
-<span style="color: var(--LightHoverBackground); background-color: var(--LightBackground1);">Hover Text </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground3);">Backgrounds</span>
-<hr>
+<div><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground1);">Hover Text </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground3);">Backgrounds</span></div>
 <input id="Light0" onclick='PalettePicker(this,{
 			Background1:"LightCyan", 
 			Background2:"PowderBlue", 
@@ -510,7 +517,6 @@ function xCloneTemplate(TemplateID,CloneToID) {
 			HoverBackground:"#6D6875"
 		});' type="radio" name="LightPalette" value="Light2">
 <label for="Light2">Light2</label>
-
 </fieldset>
 
 <fieldset style="grid-row: span 2;">
@@ -518,28 +524,23 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <label for="PickDarkBackground1">Background1</label>
 <input type="color" id="PickDarkBackground1" onchange="SetColorInTextBox(this,'newDarkBackground1');">
 <input type="text" id="newDarkBackground1" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground1');">
-<span style="color: var(--DarkFontColor); background-color: var(--DarkBackground1);">Normal Text on Background1</span>
-<hr>
+<div><span style="color: var(--DarkFontColor); background-color: var(--DarkBackground1);">Normal Text on Background1</span></div>
 <label for="PickDarkBackground2">Background2</label>
 <input type="color" id="PickDarkBackground2" onchange="SetColorInTextBox(this,'newDarkBackground2');">
 <input type="text" id="newDarkBackground2" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground2');">
-<span style="color: var(--DarkFontColor); background-color: var(--DarkBackground2);">Normal Text on Background2</span>
-<hr>
+<div><span style="color: var(--DarkFontColor); background-color: var(--DarkBackground2);">Normal Text on Background2</span></div>
 <label for="PickDarkBackground3">Background3</label>
 <input type="color" id="PickDarkBackground3" onchange="SetColorInTextBox(this,'newDarkBackground3');">
 <input type="text" id="newDarkBackground3" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground3');">
-<span style="color: var(--DarkFontColor); background-color: var(--DarkBackground3);">Normal Text on Background3</span>
-<hr>
+<div><span style="color: var(--DarkFontColor); background-color: var(--DarkBackground3);">Normal Text on Background3</span></div>
 <label for="PickDarkControlBackground">Control</label>
 <input type="color" id="PickDarkControlBackground" onchange="SetColorInTextBox(this,'newDarkControlBackground');">
 <input type="text" id="newDarkControlBackground" class="newColorBox" onchange="SetNewColor(this,'--DarkControlBackground');">
-<span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground1);">Control Text </span><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground3);">Backgrounds</span>
-<hr>
+<div><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground1);">Control Text </span><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground3);">Backgrounds</span></div>
 <label for="PickDarkHoverBackground">Hover</label>
 <input type="color" id="PickDarkHoverBackground" onchange="SetColorInTextBox(this,'newDarkHoverBackground');">
 <input type="text" id="newDarkHoverBackground" class="newColorBox" onchange="SetNewColor(this,'--DarkHoverBackground');">
-<span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground1);">Hover Text </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground3);">Backgrounds</span>
-<hr>
+<div><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground1);">Hover Text </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground3);">Backgrounds</span></div>
 <input id="Dark0" onclick='PalettePicker(this,{
 			Background1:"#03071E", 
 			Background2:"#370617", 
