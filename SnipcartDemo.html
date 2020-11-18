@@ -284,6 +284,38 @@ body,html{
 	fill:#429bfc
 }
 </style>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+	setFormat("starry-night");
+	setFormat("rosy");
+	setFormat("irises");
+	setFormat("almond");
+});
+
+function setFormat(name) {
+//data-item-id = demo-starry-night-physical demo-starry-night-digital
+//data-item-quantity
+//starry-night-quantity starry-night-format
+	//class added to hide 'product__button--hide'
+	let quantity = document.getElementById(name+"-quantity").value;
+	let format = document.getElementById(name+"-format").value;
+	let addButtonPhysical = document.querySelectorAll('[data-item-id=demo-'+name+'-physical]')[0];
+	let addButtonDigital = document.querySelectorAll('[data-item-id=demo-'+name+'-digital]')[0];
+	addButtonPhysical.setAttribute("data-item-quantity",quantity);
+	addButtonDigital.setAttribute("data-item-quantity",quantity);
+	if (~format.indexOf('physical')) { //physical
+		let price = addButtonPhysical.getAttribute("data-item-price");
+		document.getElementById(name).innerHTML = "$"+(price*quantity).toFixed(2);
+		addButtonDigital.classList.add("product__button--hide");
+		addButtonPhysical.classList.remove("product__button--hide");
+	} else { //digital
+		let price = addButtonDigital.getAttribute("data-item-price");
+		document.getElementById(name).innerHTML = "$"+(price*quantity).toFixed(2);
+		addButtonPhysical.classList.add("product__button--hide");
+		addButtonDigital.classList.remove("product__button--hide");
+	}
+}
+</script>
 </head>
   <body>
 <div id="snipcart" data-api-key="YzQ2NDRkMGQtYjcwNi00ZjczLWI0ZTItMWVkZjNjNmMzOTgxNjM3NDEzMDc3ODg1OTM3NTQy" hidden></div>
@@ -323,18 +355,18 @@ body,html{
 				<p class="product__description">High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh.</p> 
 				<div class="product__summary">
 					<div>
-						<label for="quantity">QUANTITY</label> 
-						<input type="number" name="quantity" id="quantity" value="1" min="1">
+						<label for="starry-night-quantity">QUANTITY</label> 
+						<input onchange="setFormat('starry-night');" type="number" name="quantity" id="starry-night-quantity" value="1" min="1">
 					</div>
 					<div>
-						<label for="format">FORMAT</label> 
-						<select name="format" id="format">
+						<label for="starry-night-format">FORMAT</label> 
+						<select onchange="setFormat('starry-night');" name="format" id="starry-night-format">
 							<option value="physical">Physical copy</option> 
 							<option value="digital">Digital copy (.jpg)</option>
 						</select>
 					</div> 
-					<div class="product__price">$79.95</div> 
-					<button data-item-id="demo-starry-night" data-item-price="79.95" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh." data-item-image="/images/starry-night.jpg" data-item-name="Starry Night" data-item-quantity="1" class="product__button snipcart-add-item">Add to cart</button> 
+					<div id="starry-night" class="product__price">$79.95</div> 
+					<button data-item-id="demo-starry-night-physical" data-item-price="79.95" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh." data-item-image="/images/starry-night.jpg" data-item-name="Starry Night" data-item-quantity="1" class="product__button snipcart-add-item">Add to cart</button> 
 					<button data-item-id="demo-starry-night-digital" data-item-price="29.75" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh." data-item-image="/images/starry-night.jpg" data-item-name="Starry Night (.jpg)" data-item-quantity="1" data-item-file-guid="09e589c7-3d18-4c2e-9cee-4f447e9f054a" class="product__button snipcart-add-item product__button--hide">Add to cart</button>
 				</div>
 			</div>
@@ -345,17 +377,17 @@ body,html{
 				<h2 class="product__title">Rosy-Fingered Dawn at Louse Point</h2> 
 				<p class="product__description">The title Rosy-Fingered Dawn at Louse Point refers to one of Willem de Kooning's favourite places in Long Island.</p> 
 				<div class="product__summary"><div>
-					<label for="quantity">QUANTITY</label> 
-					<input type="number" name="quantity" id="quantity" value="1" min="1">
+					<label for="rosy-quantity">QUANTITY</label> 
+					<input onchange="setFormat('rosy');" type="number" name="quantity" id="rosy-quantity" value="1" min="1">
 				</div> 
 				<div>
-					<label for="format">FORMAT</label> 
-					<select name="format" id="format">
+					<label for="rosy-format">FORMAT</label> 
+					<select onchange="setFormat('rosy');" name="format" id="rosy-format">
 						<option value="physical">Physical copy</option><option value="digital">Digital copy (.jpg)</option>
 					</select>
 				</div> 
-				<div class="product__price">$49.95</div> 
-				<button data-item-id="demo-rosy" data-item-price="49.95" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="The title Rosy-Fingered Dawn at Louse Point refers to one of Willem de Kooning's favourite places in Long Island." data-item-image="/images/rosy.jpg" data-item-name="Rosy-Fingered Dawn at Louse Point" data-item-quantity="1" class="product__button snipcart-add-item">Add to cart</button> <button data-item-id="demo-rosy-digital" data-item-price="29.75" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="The title Rosy-Fingered Dawn at Louse Point refers to one of Willem de Kooning's favourite places in Long Island." data-item-image="/images/rosy.jpg" data-item-name="Rosy-Fingered Dawn at Louse Point (.jpg)" data-item-quantity="1" data-item-file-guid="98dbd416-159d-4f76-8a59-30703cf6189f" class="product__button snipcart-add-item product__button--hide">Add to cart</button>
+				<div id="rosy" class="product__price">$49.95</div> 
+				<button data-item-id="demo-rosy-physical" data-item-price="49.95" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="The title Rosy-Fingered Dawn at Louse Point refers to one of Willem de Kooning's favourite places in Long Island." data-item-image="/images/rosy.jpg" data-item-name="Rosy-Fingered Dawn at Louse Point" data-item-quantity="1" class="product__button snipcart-add-item">Add to cart</button> <button data-item-id="demo-rosy-digital" data-item-price="29.75" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="The title Rosy-Fingered Dawn at Louse Point refers to one of Willem de Kooning's favourite places in Long Island." data-item-image="/images/rosy.jpg" data-item-name="Rosy-Fingered Dawn at Louse Point (.jpg)" data-item-quantity="1" data-item-file-guid="98dbd416-159d-4f76-8a59-30703cf6189f" class="product__button snipcart-add-item product__button--hide">Add to cart</button>
 			</div>
 		</div>
 	</div>
@@ -366,17 +398,17 @@ body,html{
 			<p class="product__description">Irises is yet again, another painting by the Dutch artist Vincent van Gogh.</p> 
 			<div class="product__summary">
 				<div>
-					<label for="quantity">QUANTITY</label> 
-					<input type="number" name="quantity" id="quantity" value="1" min="1">
+					<label for="irises-quantity">QUANTITY</label> 
+					<input onchange="setFormat('irises');" type="number" name="quantity" id="irises-quantity" value="1" min="1">
 				</div> 
 				<div>
-					<label for="format">FORMAT</label> 
-					<select name="format" id="format">
+					<label for="irises-format">FORMAT</label> 
+					<select onchange="setFormat('irises');" name="format" id="irises-format">
 						<option value="physical">Physical copy</option><option value="digital">Digital copy (.jpg)</option>
 					</select>
 				</div> 
-				<div class="product__price">$65.95</div> 
-				<button data-item-id="demo-irises" data-item-price="65.95" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="Irises is yet again, another painting by the Dutch artist Vincent van Gogh." data-item-image="/images/irises.jpg" data-item-name="Irises" data-item-quantity="1" class="product__button snipcart-add-item">Add to cart</button> 
+				<div id="irises" class="product__price">$65.95</div> 
+				<button data-item-id="demo-irises-physical" data-item-price="65.95" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="Irises is yet again, another painting by the Dutch artist Vincent van Gogh." data-item-image="/images/irises.jpg" data-item-name="Irises" data-item-quantity="1" class="product__button snipcart-add-item">Add to cart</button> 
 				<button data-item-id="demo-irises-digital" data-item-price="29.75" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="Irises is yet again, another painting by the Dutch artist Vincent van Gogh." data-item-image="/images/irises.jpg" data-item-name="Irises (.jpg)" data-item-quantity="1" data-item-file-guid="66edfe7f-0851-4418-93e8-785975df7318" class="product__button snipcart-add-item product__button--hide">Add to cart</button>
 			</div>
 		</div>
@@ -388,17 +420,17 @@ body,html{
 			<p class="product__description">Branches with Almond Blossom is another van Gogh painted in 1890.</p> 
 			<div class="product__summary">
 				<div>
-					<label for="quantity">QUANTITY</label> 
-					<input type="number" name="quantity" id="quantity" value="1" min="1">
+					<label for="almond-quantity">QUANTITY</label> 
+					<input onchange="setFormat('almond');" type="number" name="quantity" id="almond-quantity" value="1" min="1">
 				</div> 
 				<div>
-					<label for="format">FORMAT</label> 
-					<select name="format" id="format">
+					<label for="almond-format">FORMAT</label> 
+					<select onchange="setFormat('almond');" name="format" id="almond-format">
 						<option value="physical">Physical copy</option> <option value="digital">Digital copy (.jpg)</option>
 					</select>
 				</div> 
-				<div class="product__price">$99.95</div> 
-				<button data-item-id="demo-almond" data-item-price="99.95" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="Branches with Almond Blossom is another van Gogh painted in 1890." data-item-image="/images/almond.jpg" data-item-name="Branches with Almond Blossom" data-item-quantity="1" class="product__button snipcart-add-item">Add to cart</button> <button data-item-id="demo-almond-digital" data-item-price="29.75" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="Branches with Almond Blossom is another van Gogh painted in 1890." data-item-image="/images/almond.jpg" data-item-name="Branches with Almond Blossom (.jpg)" data-item-quantity="1" data-item-file-guid="79b1504d-9127-4e7f-bcdb-dff84a337775" class="product__button snipcart-add-item product__button--hide">Add to cart</button>
+				<div id="almond" class="product__price">$99.95</div> 
+				<button data-item-id="demo-almond-physical" data-item-price="99.95" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="Branches with Almond Blossom is another van Gogh painted in 1890." data-item-image="/images/almond.jpg" data-item-name="Branches with Almond Blossom" data-item-quantity="1" class="product__button snipcart-add-item">Add to cart</button> <button data-item-id="demo-almond-digital" data-item-price="29.75" data-item-url="https://zombiemonkey.netlify.app/snipcartdemo.html" data-item-description="Branches with Almond Blossom is another van Gogh painted in 1890." data-item-image="/images/almond.jpg" data-item-name="Branches with Almond Blossom (.jpg)" data-item-quantity="1" data-item-file-guid="79b1504d-9127-4e7f-bcdb-dff84a337775" class="product__button snipcart-add-item product__button--hide">Add to cart</button>
 			</div>
 		</div>
 	</div>
