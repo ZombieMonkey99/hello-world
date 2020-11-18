@@ -63,7 +63,6 @@ html {
 .autoFitGrid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-	/*grid-gap: 1rem; */
 }
 @media (min-width: 640px) {
 	.doubleWidth {
@@ -103,7 +102,6 @@ html {
 #MenuScreenControls {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-	/*grid-gap: 0.5rem; */
 }
 #MenuScreenControls fieldset {
 	margin: 0.4rem;
@@ -172,6 +170,12 @@ nav * svg {
 	color: var(--HoverBackground);
 	background-color: var(--Background1);
 }
+@media (max-width: 320px) {
+	.netlifyLink, .githubLink {
+		display: none;
+	}
+}
+/*sticky top menu bar style end*/
 /*input style start*/
 .FontBox {
 	display: grid;
@@ -203,7 +207,8 @@ fieldset {
     border-radius: 1.2rem;
     padding: 0.5rem;
 }
-input[type="checkbox"], input[type="radio"]  {
+input[type="checkbox"], input[type="radio"], 
+input[type="file"], input[type="color"]  {
 	opacity: 0;
 	position: fixed;
 	width: 0;
@@ -218,24 +223,19 @@ label {
 	display: inline-block;
 	margin: 0.2rem;
 	background-color: var(--Background2);
-	padding: 0.5rem;
 	border: 2px solid var(--ControlBackground);
 	border-radius: 1.2rem;
+	padding: 0.5rem;
 }
 label:hover {
 	color: var(--HoverBackground);
 	border-color: var(--HoverBackground);
 }
-input[type="file"], input[type="color"] {
-	opacity: 0;
-	position: fixed;
-	width: 0;
-}
 input {
-	border: 2px solid var(--ControlBackground);;
+	margin: 0.2rem;
+	border: 2px solid var(--ControlBackground);
 	border-radius: 1.2rem;
 	padding: 0.5rem;
-	margin: 0.2rem;
 }
 input:hover {
 	color: var(--HoverBackground);
@@ -245,14 +245,7 @@ hr {
     border: 1px solid var(--ControlBackground);
     margin: 0.3rem;
 }
-.newColorBox {
-	/*width: 4.5rem;*/
-}
-
 /*input style end*/
-
-
-/*sticky top menu bar style end*/
 </style>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function() {
@@ -430,10 +423,10 @@ function xCloneTemplate(TemplateID,CloneToID) {
 
 <template id="nav-Menu">
 <nav cloneID="navClone">
-<a href="https://github.com/ZombieMonkey99/hello-world">
+<a class="githubLink" href="https://github.com/ZombieMonkey99/hello-world">
 <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
 </a>
-<a href="https://zombiemonkey.netlify.app/">
+<a class="netlifyLink" href="https://zombiemonkey.netlify.app/">
 <svg viewBox="0 0 400 400"><path d="M290 139l-1-1 8-50 38 38-39 17h-1l-5-4zm55-3l40 40c9 9 13 13 14 18l1 2-97-41-1-1 1-1 42-17zm53 73c-2 4-6 8-13 15l-45 45-59-12h-1l-1-1c0-5-3-9-7-12v-1l11-68v-1l1-1c5 0 9-3 12-7h2l100 43zm-69 71l-75 75 13-79 1-1 7-5 1-1 53 11zm-91 91l-8 8-94-135v-1l1-2 1-1h1l103 22h1v1c2 5 6 10 11 12v1l-16 95zm-17 17c-7 6-10 10-15 11h-12c-5-2-9-6-18-14l-94-94 25-38h1a25 25 0 0 0 18-1h1l94 136zM73 282l-21-21 42-19h1l1 1 1 2v1l-24 36zm-31-31l-27-27-10-11 83 17 1 1-1 1-46 19zM0 199l1-5c1-5 6-9 14-18l35-35a22695 22695 0 0 0 48 70l1 1a29 29 0 0 0-5 6h-1L0 199zm59-67l47-47 35 15a5977 5977 0 0 1 25 11l-1 5c0 5 2 10 6 14v2l-48 73v1h-1l-6-1-5 1h-1v-1l-51-73zm57-56l60-61c9-8 13-12 18-14h12c5 2 10 6 18 14l13 13-43 67v1h-1l-7-1c-5 0-10 1-13 4h-2l-55-23zm130-39l40 40-9 60h-1v1a19 19 0 0 0-6 3h-1l-61-26-1-1a23 23 0 0 0-3-9v-2l42-66zm-41 90l57 24 1 1v5l-1 1-127 54-1-1 1-1 47-72 1-1h3a21 21 0 0 0 18-10h1zm-65 96l128-55 1 1 1 1h1v1l-11 68v1c-6 0-12 4-15 9v1h-1l-102-22-2-5z"></path>
 </svg>
 </a>
@@ -468,7 +461,6 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <header id="MenuBarTarget"></header>
 
 <section id="MenuScreen">
-
 <section id="MenuScreenControls">
 <fieldset>
 <legend>Font Type</legend>
@@ -487,24 +479,23 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <div class="ColorBox">
 <label for="PickLightBackground1">Background1</label>
 <input type="color" id="PickLightBackground1" onchange="SetColorInTextBox(this,'newLightBackground1');">
-<input type="text" id="newLightBackground1" class="newColorBox" onchange="SetNewColor(this,'--LightBackground1');">
+<input type="text" id="newLightBackground1" onchange="SetNewColor(this,'--LightBackground1');">
 <div><span style="color: var(--LightFontColor); background-color: var(--LightBackground1);">Normal Text on Background1</span></div>
-
 <label for="PickLightBackground2">Background2</label>
 <input type="color" id="PickLightBackground2" onchange="SetColorInTextBox(this,'newLightBackground2');">
-<input type="text" id="newLightBackground2" class="newColorBox" onchange="SetNewColor(this,'--LightBackground2');">
+<input type="text" id="newLightBackground2" onchange="SetNewColor(this,'--LightBackground2');">
 <div><span style="color: var(--LightFontColor); background-color: var(--LightBackground2);">Normal Text on Background2</span></div>
 <label for="PickLightBackground3">Background3</label>
 <input type="color" id="PickLightBackground3" onchange="SetColorInTextBox(this,'newLightBackground3');">
-<input type="text" id="newLightBackground3" class="newColorBox" onchange="SetNewColor(this,'--LightBackground3');">
+<input type="text" id="newLightBackground3" onchange="SetNewColor(this,'--LightBackground3');">
 <div><span style="color: var(--LightFontColor); background-color: var(--LightBackground3);">Normal Text on Background3</span></div>
 <label for="PickLightControlBackground">Control</label>
 <input type="color" id="PickLightControlBackground" onchange="SetColorInTextBox(this,'newLightControlBackground');">
-<input type="text" id="newLightControlBackground" class="newColorBox" onchange="SetNewColor(this,'--LightControlBackground');">
+<input type="text" id="newLightControlBackground" onchange="SetNewColor(this,'--LightControlBackground');">
 <div><span style="color: var(--LightControlBackground); background-color: var(--LightBackground1);">Control Text </span><span style="color: var(--LightControlBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightControlBackground); background-color: var(--LightBackground3);">Backgrounds</span></div>
 <label for="PickLightHoverBackground">Hover</label>
 <input type="color" id="PickLightHoverBackground" onchange="SetColorInTextBox(this,'newLightHoverBackground');">
-<input type="text" id="newLightHoverBackground" class="newColorBox" onchange="SetNewColor(this,'--LightHoverBackground');">
+<input type="text" id="newLightHoverBackground" onchange="SetNewColor(this,'--LightHoverBackground');">
 <div><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground1);">Hover Text </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground2);"> on all </span><span style="color: var(--LightHoverBackground); background-color: var(--LightBackground3);">Backgrounds</span></div>
 <input id="Light0" onclick='PalettePicker(this,{
 			Background1:"LightCyan", 
@@ -538,23 +529,23 @@ function xCloneTemplate(TemplateID,CloneToID) {
 <div class="ColorBox">
 <label for="PickDarkBackground1">Background1</label>
 <input type="color" id="PickDarkBackground1" onchange="SetColorInTextBox(this,'newDarkBackground1');">
-<input type="text" id="newDarkBackground1" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground1');">
+<input type="text" id="newDarkBackground1" onchange="SetNewColor(this,'--DarkBackground1');">
 <div><span style="color: var(--DarkFontColor); background-color: var(--DarkBackground1);">Normal Text on Background1</span></div>
 <label for="PickDarkBackground2">Background2</label>
 <input type="color" id="PickDarkBackground2" onchange="SetColorInTextBox(this,'newDarkBackground2');">
-<input type="text" id="newDarkBackground2" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground2');">
+<input type="text" id="newDarkBackground2" onchange="SetNewColor(this,'--DarkBackground2');">
 <div><span style="color: var(--DarkFontColor); background-color: var(--DarkBackground2);">Normal Text on Background2</span></div>
 <label for="PickDarkBackground3">Background3</label>
 <input type="color" id="PickDarkBackground3" onchange="SetColorInTextBox(this,'newDarkBackground3');">
-<input type="text" id="newDarkBackground3" class="newColorBox" onchange="SetNewColor(this,'--DarkBackground3');">
+<input type="text" id="newDarkBackground3" onchange="SetNewColor(this,'--DarkBackground3');">
 <div><span style="color: var(--DarkFontColor); background-color: var(--DarkBackground3);">Normal Text on Background3</span></div>
 <label for="PickDarkControlBackground">Control</label>
 <input type="color" id="PickDarkControlBackground" onchange="SetColorInTextBox(this,'newDarkControlBackground');">
-<input type="text" id="newDarkControlBackground" class="newColorBox" onchange="SetNewColor(this,'--DarkControlBackground');">
+<input type="text" id="newDarkControlBackground" onchange="SetNewColor(this,'--DarkControlBackground');">
 <div><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground1);">Control Text </span><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkControlBackground); background-color: var(--DarkBackground3);">Backgrounds</span></div>
 <label for="PickDarkHoverBackground">Hover</label>
 <input type="color" id="PickDarkHoverBackground" onchange="SetColorInTextBox(this,'newDarkHoverBackground');">
-<input type="text" id="newDarkHoverBackground" class="newColorBox" onchange="SetNewColor(this,'--DarkHoverBackground');">
+<input type="text" id="newDarkHoverBackground" onchange="SetNewColor(this,'--DarkHoverBackground');">
 <div><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground1);">Hover Text </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground2);"> on all </span><span style="color: var(--DarkHoverBackground); background-color: var(--DarkBackground3);">Backgrounds</span></div>
 <input id="Dark0" onclick='PalettePicker(this,{
 			Background1:"#03071E", 
@@ -583,10 +574,8 @@ function xCloneTemplate(TemplateID,CloneToID) {
 </div>
 </fieldset>
 </section> 
-
 <footer>
 </footer>
-
 </section>
 
 <section style="display: none;">
@@ -602,7 +591,7 @@ function xCloneTemplate(TemplateID,CloneToID) {
 	<p><span>IP networking</span> configuring firewall/switch/router/server</p>
 	<p><span>network monitoring</span> wireshark/SNMP/custom coding tools</p>
 	<p><span>disaster recovery</span> Tape/hard drive backups/SAN-to-SAN replication/site-to-site VPN</p>
-	<p><span>email server</span>MX record/PTR record/port 25/DKIM/SPF/DMARC</p>
+	<p><span>email server</span> MX record/PTR record/port 25/DKIM/SPF/DMARC</p>
 	<p><span>IP phone system</span> configuring IP phones/SIP trunk/setup PBX</p>
 	<p><span>virtual environment</span> connecting a SAN/install hypervisor/virtualize servers</p>
 	<p><span>network security</span> patches/user permission/firewall rules/group policy/PCI/monitoring logs/internet research/network scanner</p>
@@ -613,7 +602,7 @@ function xCloneTemplate(TemplateID,CloneToID) {
 	<h2>Education Experience</h2>
 	<p>I have a 4 year degree, Bachelor of Science in Computer Science, graduated in 2000, at <a href="https://www.wichita.edu/">WSU</a>.</p>
 	<p>I started using many of the big programming languages and software when they where new.  I remember job ads looking for Java programmers with five years of experience when Java was only one year old.</p>
-	<p>I worked part-time doing web development jobs, for around 9 years starting in 1996, during collage.</p>
+	<p>I worked part-time doing web development jobs, for around 9 years starting in 1996, during college.</p>
 	<p>I taught myself all my skills.  I learned more about working with people in college than I did about computers.  I took a job to pay for college working in the rec center on campus.  It was a pool hall/bowling alley/video arcade.  I got to break up fights, deal with angry customers, and serve food.  We had a <a href="https://www.dininggrades.com/blog/grade-of-c/">C Food Safety Grade</a>.</p>
 	<p>While working for the small company, I took them from a <a href="https://serverfault.com/questions/533858/how-to-configure-a-2821-isr-to-an-asterisk-pbx-on-a-pri-line/541975">PRI line with a Cisco CUCM</a>, and 3 others servers to do call recording, a receptionist console, and paging. I replaced it all with FreePBX and a SIP trunk that reduced costs.  It ended up being around $0.01 / minute, with no licensing costs.</p>
 	<p>Before I took over the operation of the small company's network, they had to reinstall windows on 2 to 3 desktop computers a week that where getting infested with viruses and malware. This was before ransomeware.  So I never had to deal with ransomeware, I kept it all out of the network on my watch, for 10+ years.</p>
@@ -663,6 +652,23 @@ function xCloneTemplate(TemplateID,CloneToID) {
 </section>
 </article>
 <footer>
+<!--
+<a href="https://twitter.com/snipcart">
+<svg weight="48px" height="48px" viewBox="0 0 512 512"><path d="M512,97.248c-19.04,8.352-39.328,13.888-60.48,16.576c21.76-12.992,38.368-33.408,46.176-58.016
+c-20.288,12.096-42.688,20.64-66.56,25.408C411.872,60.704,384.416,48,354.464,48c-58.112,0-104.896,47.168-104.896,104.992
+c0,8.32,0.704,16.32,2.432,23.936c-87.264-4.256-164.48-46.08-216.352-109.792c-9.056,15.712-14.368,33.696-14.368,53.056
+c0,36.352,18.72,68.576,46.624,87.232c-16.864-0.32-33.408-5.216-47.424-12.928c0,0.32,0,0.736,0,1.152
+c0,51.008,36.384,93.376,84.096,103.136c-8.544,2.336-17.856,3.456-27.52,3.456c-6.72,0-13.504-0.384-19.872-1.792
+c13.6,41.568,52.192,72.128,98.08,73.12c-35.712,27.936-81.056,44.768-130.144,44.768c-8.608,0-16.864-0.384-25.12-1.44
+C46.496,446.88,101.6,464,161.024,464c193.152,0,298.752-160,298.752-298.688c0-4.64-0.16-9.12-0.384-13.568
+C480.224,136.96,497.728,118.496,512,97.248z"></path></svg>
+</a> 
+
+<a href="https://www.facebook.com/Snipcart/">
+<svg height="48px" width="48px" viewBox="0 0 24 24"><path d="m15.997 3.985h2.191v-3.816c-.378-.052-1.678-.169-3.192-.169-3.159 0-5.323 1.987-5.323 5.639v3.361h-3.486v4.266h3.486v10.734h4.274v-10.733h3.345l.531-4.266h-3.877v-2.939c.001-1.233.333-2.077 2.051-2.077z"></path>
+</svg>
+</a>
+-->
 </footer>
 </body>
 </html>
